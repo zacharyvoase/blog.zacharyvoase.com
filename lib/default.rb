@@ -13,6 +13,9 @@ def title_of(item)
   return item.identifier.split("/").last
 end
 
+def rel_url_for(item)
+  url_for(item).gsub(%r{^#{Regexp.escape(config[:base_url])}}, "")
+end
 
 class Fixnum
   def ordinal_suffix
