@@ -1,0 +1,17 @@
+text_extensions: [ 'css', 'erb', 'haml', 'htm', 'html', 'js', 'less', 'markdown', 'md', 'php', 'rb', 'sass', 'scss', 'txt' ]
+output_dir: output
+index_filenames: [ 'index.html' ]
+enable_output_diff: false
+
+base_url: "http://blog.zacharyvoase.com"
+
+data_sources:
+  -
+    type: filesystem_unified
+    items_root: /
+    layouts_root: /
+
+deploy:
+  default:
+    options: [ '-avz', '--delete' ]
+    dst: "zvblog:/home/public"

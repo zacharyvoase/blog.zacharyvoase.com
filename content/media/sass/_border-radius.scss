@@ -1,0 +1,52 @@
+// Border-radius helps to make it easier to round the corners of your HTML elements
+// Sample Usage:
+// #container
+//   +border-radius("5px")
+
+// All corners
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius; }
+
+// Top
+@mixin border-radius-top($radius) {
+  @include border-radius-top-left($radius);
+  @include border-radius-top-right($radius); }
+
+// Right
+@mixin border-radius-right($radius) {
+  @include border-radius-top-right($radius);
+  @include border-radius-bottom-right($radius); }
+
+// Bottom
+@mixin border-radius-bottom($radius) {
+  @include border-radius-bottom-right($radius);
+  @include border-radius-bottom-left($radius); }
+
+// Left
+@mixin border-radius-left($radius) {
+  @include border-radius-top-left($radius);
+  @include border-radius-bottom-left($radius); }
+
+// Let's setup the rules so we don't have to repeat ourselves
+// These are mixins for this mixin and are re-used above
+@mixin border-radius-top-right($radius) {
+  border-top-right-radius: $radius;
+  -moz-border-radius-topright: $radius;
+  -webkit-border-top-right-radius: $radius; }
+
+@mixin border-radius-bottom-right($radius) {
+  border-bottom-right-radius: $radius;
+  -moz-border-radius-bottomright: $radius;
+  -webkit-border-bottom-right-radius: $radius; }
+
+@mixin border-radius-bottom-left($radius) {
+  border-bottom-left-radius: $radius;
+  -moz-border-radius-bottomleft: $radius;
+  -webkit-border-bottom-left-radius: $radius; }
+
+@mixin border-radius-top-left($radius) {
+  border-top-left-radius: $radius;
+  -moz-border-radius-topleft: $radius;
+  -webkit-border-top-left-radius: $radius; }

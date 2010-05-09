@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+
+preprocess do
+  system('rsync -a static/ output')  # Copy static files.
+end
+
+
+# ---- Compilation ----
+
+# Don't modify Sass partials.
+compile '/media/sass/_*/' do
+end
+
+# Render Sass files with Compass.
+require 'compass'
+compile '/media/sass/*/' do
+  load_paths = ['content/media/sass', 'output/media/css']
+  load_paths += Compass.sass_engine_options[:load_paths]
+  filter :sass, :syntax => :scss, :load_paths => load_paths, :style => :compressed
+end
+
+# Don't modify any other files in content/media/.
+compile '/media/*/' do
+end
+
+compile '/rss/' do
+  filter :erb
+end
+
+compile '*' do
+  case item[:extension]
+  when 'md'
+    filter :erb
+    filter :kramdown
+    filter :rubypants
+    filter :fix_entities
+  when 'erb'
+    filter :erb
+  when 'haml'
+    filter :haml, :attr_wrapper => '"'
+  end
+  
+  layout '/default/'
+end
+
+
+# ---- Routing ----
+
+# Don't route Sass partials.
+route '/media/sass/_*/' do
+end
+
+# content/media/sass/file.sass => /media/css/file.css
+route '/media/sass/*/' do
+  item.identifier.gsub(%r{^/media/sass/}, "/media/css/").chop + ".css"
+end
+
+# content/media/file.ext => /file.ext
+route '/media/*/' do
+  item.identifier.chop + '.' + item[:extension]
+end
+
+route '/articles/*/' do
+  item.identifier.gsub(%r{^/articles/}, "/") + "index.html"
+end
+
+route '/not-found/' do
+  "/not-found.html"
+end
+
+route '/rss/' do
+  "/rss.rdf"
+end
+
+# content/file.md => /file/index.html
+route '*' do
+  item.identifier + "index.html"
+end
+
+# ---- Layout ----
+
+layout '*', :haml, :attr_wrapper => '"'

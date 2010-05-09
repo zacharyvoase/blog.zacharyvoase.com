@@ -1,0 +1,14 @@
+%div.content-container
+  %div.content.article
+    %p.index-link-container
+      %a.index-link{:href => "/"} ← All posts
+    
+    %h1{:property => "rss:title", :datatype => ""}
+      = title_of(item)
+    
+    %p.date{:property => "dc:created", :content => item[:created_at].to_s}
+      = item[:created_at].strftime("%A %e")
+      %sup<>= item[:created_at].day.ordinal_suffix
+      = item[:created_at].strftime(" %B, %Y")
+    
+    %div.contents= find_and_preserve(content)

@@ -1,0 +1,78 @@
+!!! XML
+!!! RDFa
+%html{html_attrs("en"), xmlns}
+  %head
+    %meta{'http-equiv' => "Content-Type", :content => "application/xhtml+xml; charset=utf-8"}
+    
+    %meta{:property => "dc:creator", :content => "Zachary Voase"}
+    %meta{:property => "dc:rights",  :content => "Public Domain"}
+    
+    - if item[:kind] == "index"
+      %link{:rel => "alternate", :type => "application/rss+xml", :title => "Zack’s Blog", :href => "/rss.rdf"}
+      %link{:rel => "alternate", :type => "application/rdf+xml", :title => "Zack’s Blog", :href => "/rss.rdf"}
+      
+      %link{:rel =>      "rdf:type",      :href => "rss:channel"}
+      %meta{:property => "dc:created", :content => sorted_articles.last[:created_at].to_s}
+      %meta{:property => "rss:title",  :content => "Zack’s Blog"}
+      %link{:rel =>      "rss:link",      :href => "http://blog.zacharyvoase.com/"}
+      %link{:rel =>      "rss:items",     :href => "http://blog.zacharyvoase.com/#articles"}
+      
+      %meta{:property => "sy:updatePeriod",    :content => "daily"}
+      %meta{:property => "sy:updateFrequency", :content => "2"}
+      %meta{:property => "sy:updateBase",      :content => "2010-05-08T12:00+00:00"}
+    
+    - elsif item[:kind] == "article"
+      %link{:rel =>      "rdf:type",      :href => "rss:item"}
+      %meta{:property => "dc:created", :content => @item[:created_at].to_s}
+      %meta{:property => "dc:date",    :content => @item[:created_at].to_s}
+      %meta{:property => "rss:title",  :content => title_of(@item)}
+      %link{:rel =>      "rss:link",   :content => url_for(@item)}
+    
+    %link{:rel => "stylesheet", :href => "/media/css/style.css?#{ Time.now.to_i }", :media => "screen, projection"}
+    
+    %script{:type => "text/javascript" }
+      :plain
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-9915287-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+        })();
+    
+    %title
+      = title_of(@item)
+      | Zack’s Blog.
+  
+  %body{:id => @item[:id]}
+    %div#header-container
+      %div#header
+        %h1{:property => "rss:description", :datatype => ""}<
+          The Blog of Zachary Voase, brought to you in glorious HyperText.
+    
+    %div.content-container
+      %div#meta.content
+        %p
+          I build snazzy web apps using
+          <a href="http://djangoproject.com/">Django</a> and
+          <a href="http://rubyonrails.org/">Rails</a>.
+        
+        %p.links
+          <a href="http://zacharyvoase.com/">WWW</a>
+          ★ <a href="http://twitter.com/zacharyvoase">Twitter</a>
+          ★ <a href="http://uk.linkedin.com/in/zacharyvoase">CV/Résumé</a>
+          ★ <a href="mailto:z@zacharyvoase.com">E-mail</a>
+    
+    = render('_spacer')
+    
+    - if @item[:kind] == 'article'
+      = render('_article', :item => @item, :content => content)
+    -else
+      = content
+    
+    %div#footer-container
+      %div#footer
+        %p
+          All content on this site is released into the
+          <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain</a>.

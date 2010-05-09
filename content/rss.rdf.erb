@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:content="http://purl.org/rss/1.0/modules/content/"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+   xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+   xmlns="http://purl.org/rss/1.0/" xml:base="http://blog.zacharyvoase.com/">
+  <channel rdf:about="http://blog.zacharyvoase.com/">
+    <dc:created xml:lang="en"><%= sorted_articles.last[:created_at].to_s %></dc:created>
+    <dc:creator xml:lang="en">Zachary Voase</dc:creator>
+    <dc:rights xml:lang="en">Public Domain</dc:rights>
+    <description xml:lang="en">The Blog of Zachary Voase, brought to you in glorious HyperText.</description>
+    <items>
+      <rdf:Seq>
+        <% sorted_articles.each do |article| %>
+          <rdf:li rdf:resource="<%=h url_for(article) %>"/>
+        <% end %>
+      </rdf:Seq>
+    </items>
+    <link rdf:resource="http://blog.zacharyvoase.com/"/>
+    <sy:updateBase rdf:datatype="xs:date" xml:lang="en"><%= sorted_articles.last[:created_at].to_s %></sy:updateBase>
+    <sy:updateFrequency xml:lang="en">2</sy:updateFrequency>
+    <sy:updatePeriod xml:lang="en">daily</sy:updatePeriod>
+    <title xml:lang="en">Zack’s Blog</title>
+  </channel>
+  <% sorted_articles.each do |article| %>
+    <item rdf:about="<%=h url_for(article) %>">
+      <dc:created rdf:datatype="xs:date"><%= article[:created_at].to_s %></dc:created>
+      <link rdf:resource="<%=h url_for(article) %>"/>
+      <title xml:lang="en"><%=h title_of(article) %></title>
+      <content:encoded><%=h article.compiled_content(:snapshot => :pre) %></content:encoded>
+    </item>
+  <% end %>
+</rdf:RDF>

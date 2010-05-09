@@ -1,0 +1,20 @@
+Options +FollowSymlinks +MultiViews
+ErrorDocument 404 /not-found.html
+
+# AddOutputFilterByType DEFLATE text/html application/xhtml+xml text/css text/javascript
+FileETag MTime Size
+
+ExpiresActive On
+ExpiresDefault "access plus 1 hour"
+ExpiresByType text/css "access plus 1 year"
+ExpiresByType text/javascript "access plus 1 year"
+ExpiresByType image/gif "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+
+RewriteEngine on
+RewriteRule ^rss$ rss.rdf
+
+AddType application/rdf+xml   .rdf
+AddType application/xhtml+xml .html
+AddCharset UTF-8 .html .rdf
