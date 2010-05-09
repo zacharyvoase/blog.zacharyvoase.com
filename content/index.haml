@@ -12,5 +12,5 @@ kind: index
           %div{:about => url_for(article), :typeof => "rss:item"}
             %a.link{:href => url_for(article), :rel => "rss:link"}
               %span{:property => "rss:title", :datatype => ""}= title_of(article)
-            %span.date{:property => "dc:created", :content => article[:created_at].to_s, :datatype => "xsd:date"}<
+            %span.date{:property => "dc:date", :content => article[:created_at].to_s, :datatype => "xsd:date"}<
               = article[:created_at].strftime("%d %b %Y")

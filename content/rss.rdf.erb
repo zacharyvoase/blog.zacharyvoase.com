@@ -7,7 +7,7 @@
    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
    xmlns="http://purl.org/rss/1.0/" xml:base="http://blog.zacharyvoase.com/">
   <channel rdf:about="http://blog.zacharyvoase.com/">
-    <dc:created xml:lang="en"><%= sorted_articles.last[:created_at].to_s %></dc:created>
+    <dc:date xml:lang="en"><%= sorted_articles.last[:created_at].to_s %></dc:date>
     <dc:creator xml:lang="en">Zachary Voase</dc:creator>
     <dc:rights xml:lang="en">Public Domain</dc:rights>
     <description xml:lang="en">The Blog of Zachary Voase, brought to you in glorious HyperText.</description>
@@ -26,7 +26,7 @@
   </channel>
   <% sorted_articles.each do |article| %>
     <item rdf:about="<%=h url_for(article) %>">
-      <dc:created rdf:datatype="xs:date"><%= article[:created_at].to_s %></dc:created>
+      <dc:date rdf:datatype="xs:date"><%= article[:created_at].to_s %></dc:date>
       <link rdf:resource="<%=h url_for(article) %>"/>
       <title xml:lang="en"><%=h title_of(article) %></title>
       <content:encoded><%=h article.compiled_content(:snapshot => :pre) %></content:encoded>
