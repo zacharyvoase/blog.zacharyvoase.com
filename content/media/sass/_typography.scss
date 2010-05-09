@@ -8,19 +8,14 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
   color: white;
   text-decoration: none;
   
-  a { color: $grey * 2.3; }
+  a { color: $teal * 3; }
 }
 
-#meta {
-  font-size: 18px;
-  line-height: 24px;
+#meta .links {
   text-align: center;
   text-transform: uppercase;
-  
-  .links {
-    font-size: 14px;
-    line-height: 20px;
-  }
+  font-size: 14px;
+  line-height: 20px;
 }
 
 #footer p {
