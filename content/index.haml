@@ -8,9 +8,9 @@ kind: index
   %div.content
     %ul#articles{:typeof => "rdf:Seq", :resource => "http://blog.zacharyvoase.com/#articles"}
       - sorted_articles.each do |article|
-        %li{:rel => "rdf:li", :resource => url_for(article)}
-          %div{:about => url_for(article), :typeof => "rss:item"}
-            %a.link{:href => url_for(article), :rel => "rss:link"}
+        %li{:rel => "rdf:li", :resource => rel_url_for(article)}
+          %div{:about => rel_url_for(article), :typeof => "rss:item"}
+            %a.link{:href => rel_url_for(article), :rel => "rss:link"}
               %span{:property => "rss:title", :datatype => ""}= title_of(article)
             %span.date{:property => "dc:date", :content => article[:created_at].to_s, :datatype => "xsd:date"}<
               = article[:created_at].strftime("%d %b %Y")
