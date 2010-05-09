@@ -6,6 +6,7 @@ FileETag MTime Size
 
 ExpiresActive On
 ExpiresDefault "access plus 1 hour"
+ExpiresByType application/xhtml+xml "access plus 5 minutes"
 ExpiresByType text/css "access plus 1 year"
 ExpiresByType text/javascript "access plus 1 year"
 ExpiresByType image/gif "access plus 1 year"
