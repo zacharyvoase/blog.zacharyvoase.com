@@ -31,7 +31,7 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
   text-transform: uppercase;
 }
 
-body#index ul#articles {
+#articles {
   li {
     .date {
       font-family: $monospace-block;
