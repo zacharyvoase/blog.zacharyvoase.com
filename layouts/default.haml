@@ -27,7 +27,7 @@
       %link{:rel =>      "rdf:type",      :href => "rss:item"}
       %meta{:property => "dc:date",    :content => @item[:created_at].to_s, :datatype => "xs:date"}
       %meta{:property => "rss:title",  :content => title_of(@item)}
-      %link{:rel =>      "rss:link",   :content => url_for(@item)}
+      %link{:rel =>      "rss:link",   :content => rel_url_for(@item)}
     
     %link{:rel => "stylesheet", :href => "/media/css/style.css?#{ Time.now.to_i }", :media => "screen, projection"}
     
@@ -52,31 +52,25 @@
         %h1{:property => "rss:description", :datatype => ""}<
           The Blog of Zachary Voase, brought to you in glorious HyperText.
     
-    %div.content-container
-      %div#meta.content{:about => "http://zacharyvoase.com/"}
-        %p
-          I build snazzy web apps using
-          %a{:rel => "foaf:interest", :href => "http://djangoproject.com"} Django
-          and
-          %a{:rel => "foaf:interest", :href => "http://rubyonrails.org/"} Rails
-          %span> .
-        
-        %p.links
-          %a{:rel => "foaf:homepage", :href => "http://zacharyvoase.com/"} WWW
-          &#9733;
-          %a{:rel => "foaf:page", :href => "http://twitter.com/zacharyvoase"} Twitter
-          &#9733;
-          %a{:rel => "foaf:page", :href => "http://github.com/zacharyvoase"} GitHub
-          &#9733;
-          %a{:rel => "foaf:page", :href => "http://uk.linkedin.com/in/zacharyvoase"} CV/Résumé
-          &#9733;
-          %a{:rel => "foaf:mbox", :href => "mailto:z@zacharyvoase.com"} E-mail
+    - if @item[:kind] == "index"
+      %div.content-container
+        %div#meta.content{:about => "http://zacharyvoase.com/"}
+          %p.links
+            %a{:rel => "foaf:homepage", :href => "http://zacharyvoase.com/"} WWW
+            &#9733;
+            %a{:rel => "foaf:page", :href => "http://twitter.com/zacharyvoase"} Twitter
+            &#9733;
+            %a{:rel => "foaf:page", :href => "http://github.com/zacharyvoase"} GitHub
+            &#9733;
+            %a{:rel => "foaf:page", :href => "http://uk.linkedin.com/in/zacharyvoase"} CV/Résumé
+            &#9733;
+            %a{:rel => "foaf:mbox", :href => "mailto:z@zacharyvoase.com"} E-mail
     
-    = render('_spacer')
+      = render('_spacer')
     
     - if @item[:kind] == 'article'
       = render('_article', :item => @item, :content => content)
-    -else
+    - else
       = content
     
     %div#footer-container
