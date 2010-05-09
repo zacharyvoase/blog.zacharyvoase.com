@@ -19,3 +19,25 @@ RewriteRule ^rss$ rss.rdf
 AddType application/rdf+xml   .rdf
 AddType application/xhtml+xml .html
 AddCharset UTF-8 .html .rdf
+
+RedirectMatch permanent ^/2010-03-05-deployment-with-uwsgi-and-nginx$                             http://blog.zacharyvoase.com/2010/03/05/django-uwsgi-nginx/
+RedirectMatch permanent ^/2010-02-03-django-project-conventions-revisited$                        http://blog.zacharyvoase.com/2010/02/03/django-project-conventions/
+RedirectMatch permanent ^/2010-01-31-civil-disobedience$                                          http://blog.zacharyvoase.com/2010/01/31/civil-disobedience/
+RedirectMatch permanent ^/2010-01-04-why-im-going-public$                                         http://blog.zacharyvoase.com/2010/01/04/unlicense/
+RedirectMatch permanent ^/2010-01-02-a-nicer-redis-client-for-eventmachine$                       http://blog.zacharyvoase.com/2010/01/02/nice-redis-em/
+RedirectMatch permanent ^/2009-12-09-fixing-django-management-commands$                           http://blog.zacharyvoase.com/2009/12/09/django-boss/
+RedirectMatch permanent ^/2009-11-17-announcing-markdoc$                                          http://blog.zacharyvoase.com/2009/11/17/markdoc/
+RedirectMatch permanent ^/2009-11-06-capitalism-or-something-unlike-it$                           http://blog.zacharyvoase.com/2009/11/06/capitalism/
+RedirectMatch permanent ^/2009-11-02-bioseq$                                                      http://blog.zacharyvoase.com/2009/11/02/bioseq/
+RedirectMatch permanent ^/2009-11-02-bioinformatics-and-the-semantic-web$                         http://blog.zacharyvoase.com/2009/11/02/bioinformatics-semweb/
+RedirectMatch permanent ^/2009-09-11-easy-path-manipulation-in-python$                            http://blog.zacharyvoase.com/2009/09/11/path/
+RedirectMatch permanent ^/2009-09-10-django-settings-flavours$                                    http://blog.zacharyvoase.com/2009/09/10/django-settings-flavours/
+RedirectMatch permanent ^/2009-09-08-serving-authenticated-static-files-with-django$              http://blog.zacharyvoase.com/2009/09/08/sendfile/
+RedirectMatch permanent ^/2009-08-29-getting-a-proper-readline-module-for-python-on-snow-leopard$ http://blog.zacharyvoase.com/2009/08/29/python-readline-sl/
+RedirectMatch permanent ^/2009-08-20-openpgp-for-complete-beginners$                              http://blog.zacharyvoase.com/2009/08/20/openpgp/
+RedirectMatch permanent ^/2009-07-23-django-orm-neat-undocumented-trick$                          http://blog.zacharyvoase.com/2009/07/23/django-orm-trick/
+RedirectMatch permanent ^/2009-07-20-idea-distributed-http-lock-server$                           http://blog.zacharyvoase.com/2009/07/20/http-lock/
+RedirectMatch permanent ^/2009-07-03-the-difference-between-post-and-put-get-it-right$            http://blog.zacharyvoase.com/2009/07/03/http-post-put-diff/
+RedirectMatch permanent ^/2009-06-20-bureaucratic-breakdown$                                      http://blog.zacharyvoase.com/2009/06/20/bureaucratic-breakdown/
+RedirectMatch permanent ^/2009-05-18-why-json-will-save-bioinformatics$                           http://blog.zacharyvoase.com/2009/05/18/json-bioinformatics/
+RedirectMatch permanent ^/2009-05-17-django-tip-staff-only-access-to-databrowse$                  http://blog.zacharyvoase.com/2009/05/17/django-staff-databrowse/
