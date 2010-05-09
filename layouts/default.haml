@@ -11,11 +11,13 @@
       %link{:rel => "alternate", :type => "application/rss+xml", :title => "Zack’s Blog", :href => "/rss.rdf"}
       %link{:rel => "alternate", :type => "application/rdf+xml", :title => "Zack’s Blog", :href => "/rss.rdf"}
       
-      %link{:rel =>      "rdf:type",      :href => "rss:channel"}
+      %link{     :rev => "foaf:weblog",   :href => "http://zacharyvoase.com/"}
+      
+      %link{     :rel => "rdf:type",      :href => "rss:channel"}
       %meta{:property => "dc:date",    :content => sorted_articles.last[:created_at].to_s}
       %meta{:property => "rss:title",  :content => "Zack’s Blog"}
-      %link{:rel =>      "rss:link",      :href => "http://blog.zacharyvoase.com/"}
-      %link{:rel =>      "rss:items",     :href => "http://blog.zacharyvoase.com/#articles"}
+      %link{     :rel => "rss:link",      :href => "http://blog.zacharyvoase.com/"}
+      %link{     :rel => "rss:items",     :href => "http://blog.zacharyvoase.com/#articles"}
       
       %meta{:property => "sy:updatePeriod",    :content => "daily"}
       %meta{:property => "sy:updateFrequency", :content => "2"}
@@ -51,18 +53,24 @@
           The Blog of Zachary Voase, brought to you in glorious HyperText.
     
     %div.content-container
-      %div#meta.content
+      %div#meta.content{:about => "http://zacharyvoase.com/"}
         %p
           I build snazzy web apps using
-          <a href="http://djangoproject.com/">Django</a> and
-          <a href="http://rubyonrails.org/">Rails</a>.
+          %a{:rel => "foaf:interest", :href => "http://djangoproject.com"} Django
+          and
+          %a{:rel => "foaf:interest", :href => "http://rubyonrails.org/"} Rails
+          %span> .
         
         %p.links
-          <a href="http://zacharyvoase.com/">WWW</a>
-          &#9733; <a href="http://twitter.com/zacharyvoase">Twitter</a>
-          &#9733; <a href="http://github.com/zacharyvoase">GitHub</a>
-          &#9733; <a href="http://uk.linkedin.com/in/zacharyvoase">CV/Résumé</a>
-          &#9733; <a href="mailto:z@zacharyvoase.com">E-mail</a>
+          %a{:rel => "foaf:homepage", :href => "http://zacharyvoase.com/"} WWW
+          &#9733;
+          %a{:rel => "foaf:page", :href => "http://twitter.com/zacharyvoase"} Twitter
+          &#9733;
+          %a{:rel => "foaf:page", :href => "http://github.com/zacharyvoase"} GitHub
+          &#9733;
+          %a{:rel => "foaf:page", :href => "http://uk.linkedin.com/in/zacharyvoase"} CV/Résumé
+          &#9733;
+          %a{:rel => "foaf:mbox", :href => "mailto:z@zacharyvoase.com"} E-mail
     
     = render('_spacer')
     
