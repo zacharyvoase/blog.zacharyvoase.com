@@ -18,7 +18,7 @@
         <% end %>
       </rdf:Seq>
     </items>
-    <link rdf:resource="http://blog.zacharyvoase.com/"/>
+    <link>http://blog.zacharyvoase.com/</link>
     <sy:updateBase rdf:datatype="xs:date" xml:lang="en"><%= sorted_articles.last[:created_at].to_s %></sy:updateBase>
     <sy:updateFrequency xml:lang="en">2</sy:updateFrequency>
     <sy:updatePeriod xml:lang="en">daily</sy:updatePeriod>
@@ -27,7 +27,7 @@
   <% sorted_articles.each do |article| %>
     <item rdf:about="<%=h url_for(article) %>">
       <dc:date rdf:datatype="xs:date"><%= article[:created_at].to_s %></dc:date>
-      <link rdf:resource="<%=h url_for(article) %>"/>
+      <link><%=h url_for(article) %></link>
       <title xml:lang="en"><%=h title_of(article) %></title>
       <content:encoded><%=h article.compiled_content(:snapshot => :pre) %></content:encoded>
     </item>
