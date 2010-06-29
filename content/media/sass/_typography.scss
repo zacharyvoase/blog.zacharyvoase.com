@@ -42,6 +42,8 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
 }
 
 div.article {
+  text-rendering: optimizeLegibility;
+  
   a.index-link {
     font-size: 12px;
     text-transform: uppercase;
