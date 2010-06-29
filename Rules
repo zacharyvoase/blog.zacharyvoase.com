@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+require "bundler"
+Bundler.setup
+
 preprocess do
   system('rsync -a static/ output')  # Copy static files.
 end
