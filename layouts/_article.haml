@@ -7,7 +7,7 @@
       = title_of(item)
     
     %p.date{:property => "dc:date", :content => item[:created_at].to_s, :datatype => "xs:date"}
-      = item[:created_at].strftime("%A %e")
+      = item[:created_at].strftime("%A ") + item[:created_at].day.to_s
       %sup<>= item[:created_at].day.ordinal_suffix
       = item[:created_at].strftime(" %B, %Y")
     
