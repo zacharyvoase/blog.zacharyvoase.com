@@ -1,6 +1,6 @@
 --- 
 kind: article
-created_at: 2009-12-09
+timestamp: 2009-12-09
 title: "Fixing Django Management Commands"
 ---
 

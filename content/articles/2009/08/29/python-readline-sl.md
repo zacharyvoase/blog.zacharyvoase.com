@@ -1,6 +1,6 @@
 --- 
 kind: article
-created_at: 2009-08-29
+timestamp: 2009-08-29
 title: "Getting A Proper Readline Module for Python on Snow Leopard"
 ---
 

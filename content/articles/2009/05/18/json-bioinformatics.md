@@ -1,6 +1,6 @@
 --- 
 kind: article
-created_at: 2009-05-18
+timestamp: 2009-05-18
 title: "Why JSON Will Save Bioinformatics (Well, Sort Of…)"
 ---
 

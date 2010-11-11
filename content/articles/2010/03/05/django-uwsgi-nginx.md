@@ -1,6 +1,6 @@
 --- 
 kind: article
-created_at: 2010-03-05
+timestamp: 2010-03-05
 title: "Deployment with uWSGI and nginx"
 ---
 

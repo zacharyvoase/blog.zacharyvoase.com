@@ -1,6 +1,6 @@
 --- 
 kind: article
-created_at: 2009-05-17
+timestamp: 2009-05-17
 title: "Django Tip: Staff-only Access to Databrowse"
 ---
 

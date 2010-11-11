@@ -1,6 +1,6 @@
 --- 
 kind: article
-created_at: 2009-07-20
+timestamp: 2009-07-20
 title: "Idea: Distributed HTTP Lock Server"
 ---
 

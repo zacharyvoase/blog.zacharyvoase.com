@@ -1,5 +1,5 @@
 ---
-created_at: 2010-07-03
+timestamp: 2010-07-03
 kind: article
 title: "Nutrition"
 ---

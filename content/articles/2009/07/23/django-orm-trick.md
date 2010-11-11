@@ -1,6 +1,6 @@
 --- 
 kind: article
-created_at: 2009-07-23
+timestamp: 2009-07-23
 title: "Django ORM: Neat (undocumented) trick"
 ---
 

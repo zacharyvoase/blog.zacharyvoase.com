@@ -20,7 +20,7 @@ task :new_article do |t|
   File.open(filename, "w+") do |f|
     f.write(<<END)
 ---
-created_at: #{datestring.gsub("/", "-")}
+timestamp: #{datestring.gsub("/", "-")}
 kind: article
 title: #{title.to_json}
 ---
