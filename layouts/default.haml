@@ -50,8 +50,14 @@
   %body{:id => @item[:id]}
     %div#header-container
       %div#header
-        %h1{:property => "rss:description", :datatype => ""}<
-          The Blog of Zachary Voase, brought to you in glorious HyperText.
+        - if item[:kind] == "index"
+          %h1{:property => "rss:description", :datatype => ""}<
+            %span.prefix The Blog of
+            Zachary Voase
+        - else
+          %h1<
+            %span.prefix The Blog of
+            Zachary Voase
     
     - if @item[:kind] == "index"
       %div.content-container
