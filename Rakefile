@@ -5,6 +5,7 @@ require 'i18n'
 require 'json'
 require 'shellwords'
 
+desc "Create a new article"
 task :new_article do |t|
   # Get title and slug.
   title = (print "Title: "; STDIN.gets).chomp
