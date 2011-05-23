@@ -1,6 +1,6 @@
 --- 
 kind: article
-timestamp: 2010-01-31
+created_at: 2010-01-31
 title: "Civil Disobedience"
 ---
 

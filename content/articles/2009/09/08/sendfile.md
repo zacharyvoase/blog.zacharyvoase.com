@@ -1,6 +1,6 @@
 --- 
 kind: article
-timestamp: 2009-09-08
+created_at: 2009-09-08
 title: "Serving Authenticated Static Files with Django"
 ---
 

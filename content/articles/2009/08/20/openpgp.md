@@ -1,6 +1,6 @@
 --- 
 kind: article
-timestamp: 2009-08-20
+created_at: 2009-08-20
 title: "OpenPGP for Complete Beginners"
 ---
 

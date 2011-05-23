@@ -1,6 +1,6 @@
 --- 
 kind: article
-timestamp: 2009-11-17
+created_at: 2009-11-17
 title: "Announcing Markdoc"
 ---
 

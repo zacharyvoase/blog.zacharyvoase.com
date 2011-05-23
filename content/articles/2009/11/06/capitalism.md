@@ -1,6 +1,6 @@
 --- 
 kind: article
-timestamp: 2009-11-06
+created_at: 2009-11-06
 title: "Capitalism, or Something Unlike It?"
 ---
 

@@ -1,5 +1,5 @@
 ---
-timestamp: 2010-05-17
+created_at: 2010-05-17
 kind: article
 title: "The Semantic Blog"
 ---

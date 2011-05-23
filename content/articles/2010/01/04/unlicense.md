@@ -1,6 +1,6 @@
 --- 
 kind: article
-timestamp: 2010-01-04
+created_at: 2010-01-04
 title: "Why I’m Going Public"
 ---
 

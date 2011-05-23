@@ -6,9 +6,9 @@
     %h1{:property => "rss:title", :datatype => ""}
       = title_of(item)
     
-    %p.date{:property => "dc:date", :content => item[:timestamp].to_s, :datatype => "xs:date"}
-      = item[:timestamp].strftime("%A ") + item[:timestamp].day.to_s
-      %sup<>= item[:timestamp].day.ordinal_suffix
-      = item[:timestamp].strftime(" %B, %Y")
+    %p.date{:property => "dc:date", :content => item[:created_at].to_s, :datatype => "xs:date"}
+      = item[:created_at].strftime("%A ") + item[:created_at].day.to_s
+      %sup<>= item[:created_at].day.ordinal_suffix
+      = item[:created_at].strftime(" %B, %Y")
     
     %div.contents= find_and_preserve(content)

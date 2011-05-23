@@ -1,5 +1,5 @@
 ---
-timestamp: 2011-01-18
+created_at: 2011-01-18
 kind: article
 title: "Modern Accounting on the Open Web"
 ---

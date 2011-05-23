@@ -1,6 +1,6 @@
 --- 
 kind: article
-timestamp: 2009-07-03
+created_at: 2009-07-03
 title: "The Difference Between POST and PUT—Get it Right!"
 ---
 

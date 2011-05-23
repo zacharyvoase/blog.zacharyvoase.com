@@ -42,7 +42,7 @@ compile '*' do
   when 'haml'
     filter :haml, :attr_wrapper => '"'
   end
-  
+
   layout '/default/'
 end
 

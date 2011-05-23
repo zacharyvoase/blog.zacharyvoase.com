@@ -1,6 +1,6 @@
 --- 
 kind: article
-timestamp: 2010-02-03
+created_at: 2010-02-03
 title: "Django Project Conventions, Revisited"
 ---
 

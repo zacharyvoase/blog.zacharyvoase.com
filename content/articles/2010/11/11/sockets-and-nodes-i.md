@@ -1,5 +1,5 @@
 ---
-timestamp: 2010-11-11
+created_at: 2010-11-11
 kind: article
 title: "Sockets and Nodes—An Experiment, Part I"
 ---

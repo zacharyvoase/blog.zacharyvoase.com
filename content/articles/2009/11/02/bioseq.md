@@ -1,6 +1,6 @@
 --- 
 kind: article
-timestamp: 2009-11-02
+created_at: 2009-11-02
 title: "BioSeq"
 ---
 

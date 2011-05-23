@@ -1,6 +1,6 @@
 --- 
 kind: article
-timestamp: 2009-06-20
+created_at: 2009-06-20
 title: "Bureaucratic Breakdown"
 ---
 

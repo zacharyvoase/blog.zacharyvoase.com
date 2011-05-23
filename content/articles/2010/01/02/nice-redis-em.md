@@ -1,6 +1,6 @@
 --- 
 kind: article
-timestamp: 2010-01-02
+created_at: 2010-01-02
 title: "A (Nicer) Redis Client for EventMachine"
 ---
 

@@ -1,6 +1,6 @@
 --- 
 kind: article
-timestamp: 2009-09-11
+created_at: 2009-09-11
 title: "Easy Path Manipulation in Python"
 ---
 
