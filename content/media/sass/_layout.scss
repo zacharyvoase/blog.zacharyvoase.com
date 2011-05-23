@@ -21,12 +21,12 @@ body, html {
 
 #header-container {
   @include container;
-  
+
   #header {
     @include section;
 
     width: 640px;
-    
+
     h1 {
       background-color: $light-teal;
       width: 640px - (80px * 2);
@@ -40,30 +40,30 @@ body, html {
 
 .content-container {
   @include container;
-  
+
   background-color: #fff;
   border-top: 8px solid $teal;
-  
+
   .content {
     @include section;
-    
+
     padding: 20px 0 0 0;
     width: 640px;
-    
+
     p { margin-bottom: 20px; }
   }
 }
 
 #footer-container {
   @include container;
-  
+
   border-top: 8px solid $teal;
   padding-bottom: 20px;
-  
+
   #footer {
     @include section;
     @include border-radius-bottom(10px);
-    
+
     background-color: $light-teal;
     height: 100px - (20px * 2);
     padding: 20px;
@@ -73,9 +73,9 @@ body, html {
 
 .spacer {
   @include container;
-  
+
   border-top: 8px solid $teal;
-  
+
   .spacer-child {
     @include section;
     height: 40px;
@@ -92,14 +92,14 @@ body, html {
     display: block;
     list-style: none;
     margin-bottom: 10px;
-  
+
     .date {
       clear: both;
       display: block;
       float: right;
       width: 100px;
     }
-  
+
     .link { white-space: nowrap; }
   }
 }
@@ -117,7 +117,7 @@ h4 { margin-bottom: 16px; }
 
 blockquote, pre {
   @include border-radius(5px);
-  
+
   background-color: $grey * 2;
   float: left;
   min-width: 640px - (10px * 2);
@@ -128,19 +128,21 @@ blockquote {
   margin: 0 0 16px 0;
   padding: 10px 20px;
   min-width: 640px - (20px * 2);
-  
+
   & :last-child { margin-bottom: 0 !important; }
 }
 
+ul, ol { margin-right: 0; }
+
 dl {
   margin: 0 0 16px 0;
-  
+
   dd { margin-bottom: 8px; }
 }
 
 ins, del {
   @include border-radius(5px);
-  
+
   background-color: $teal;
   display: block;
   padding: 10px;

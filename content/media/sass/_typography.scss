@@ -1,5 +1,6 @@
 @import "_colors";
 
+$serif: "Times New Roman", Times, "Nimbus Roman", "Liberation Serif", Georgia, serif;
 $sans-serif: "Gill Sans", "Gill Sans MT", Verdana, "DejaVu Sans", "Bitstream Vera Sans", sans-serif;
 $monospace-inline: "Courier", "Courier 10 Pitch", "Courier New", "monospace";
 $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier", "Courier 10 Pitch", "Courier New", "monospace";
@@ -7,7 +8,7 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
 @mixin dark-bg {
   color: white;
   text-decoration: none;
-  
+
   a { color: $teal * 3; }
 }
 
@@ -36,7 +37,7 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
 
 #footer p {
   @include dark-bg;
-  
+
   font-size: 12px;
   text-align: center;
   text-transform: uppercase;
@@ -49,7 +50,7 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
       font-size: 12px;
       text-align: right;
     }
-    
+
     .link {
       text-transform: uppercase;
       font-size: 13px;
@@ -59,12 +60,12 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
 
 div.article {
   text-rendering: optimizeLegibility;
-  
+
   a.index-link {
     font-size: 12px;
     text-transform: uppercase;
   }
-  
+
   h1 {
     font-size: 24px;
     line-height: 32px;
@@ -72,7 +73,7 @@ div.article {
     text-transform: uppercase;
     text-align: center;
   }
-  
+
   p.date {
     color: $grey * 0.5;
     font-size: 14px;
@@ -86,6 +87,22 @@ body {
   font-size: 16px;
   line-height: 26px;
   color: $grey;
+
+  .contents {
+    font-family: $serif;
+    text-align: justify;
+
+    h1, h2, h3, h4, h5 {
+      font-family: $sans-serif;
+      font-weight: normal;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    h2 { font-size: 20px; }
+    h3 { font-size: 18px; }
+    h4 { font-size: 16px; }
+    h5 { font-size: 15px; }
+  }
 }
 
 a {
