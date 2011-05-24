@@ -15,7 +15,7 @@
       %link{     :rev => "foaf:weblog",   :href => "http://zacharyvoase.com/"}
       
       %link{     :rel => "rdf:type",      :href => "rss:channel"}
-      %meta{:property => "dc:date",    :content => sorted_articles.last[:timestamp].to_s}
+      %meta{:property => "dc:date",    :content => sorted_articles.last[:created_at].to_s}
       %meta{:property => "rss:title",  :content => "Zack’s Blog"}
       %link{     :rel => "rss:link",      :href => "http://blog.zacharyvoase.com/"}
       %link{     :rel => "rss:items",     :href => "http://blog.zacharyvoase.com/#articles"}
@@ -26,7 +26,7 @@
     
     - elsif item[:kind] == "article"
       %link{:rel =>      "rdf:type",      :href => "rss:item"}
-      %meta{:property => "dc:date",    :content => @item[:timestamp].to_s, :datatype => "xs:date"}
+      %meta{:property => "dc:date",    :content => @item[:created_at].to_s, :datatype => "xs:date"}
       %meta{:property => "rss:title",  :content => title_of(@item)}
       %link{:rel =>      "rss:link",   :content => rel_url_for(@item)}
     
