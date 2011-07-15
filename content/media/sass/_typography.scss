@@ -28,11 +28,28 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
   }
 }
 
-#meta .links {
+#meta {
   text-align: center;
   text-transform: uppercase;
   font-size: 14px;
   line-height: 20px;
+
+  p.copy {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+#links {
+  color: $grey;
+  text-align: center;
+  font-family: $sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  ul { text-align: center; }
+  a, a:visited { color: #333; }
 }
 
 #footer p {
@@ -46,12 +63,14 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
 #articles {
   li {
     .date {
+      color: $grey;
       font-family: $monospace-block;
       font-size: 12px;
       text-align: right;
     }
 
     .link {
+      color: #000;
       text-transform: uppercase;
       font-size: 13px;
     }
@@ -86,7 +105,7 @@ body {
   font-family: $sans-serif;
   font-size: 16px;
   line-height: 26px;
-  color: $grey;
+  color: #333;
 
   .contents {
     font-family: $serif;
@@ -106,10 +125,18 @@ body {
 }
 
 a {
-  color: black;
+  color: #333;
   text-decoration: none;
+
   &:hover { text-decoration: underline; }
-  &:active, &:visited { color: black; }
+  &:visited, &:active { color: #333; }
+
+  // Links in the body of an article.
+  .article .contents & {
+    text-decoration: underline;
+
+    &:visited { color: $grey; }
+  }
 }
 
 code {
@@ -125,7 +152,7 @@ pre code {
   line-height: 18px;
 }
 
-blockquote { color: $grey * 0.5; }
+blockquote { color: $grey / 2; }
 dl dt { font-weight: bold; }
 ins { @include dark-bg; }
 sup { vertical-align: super; }

@@ -83,6 +83,34 @@ body, html {
   }
 }
 
+#links {
+  @include pie-clearfix;
+
+  margin-bottom: 20px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    margin-left: 8px;
+
+    &:before {
+      content: "★";
+      margin-right: 8px;
+    }
+
+    &.first {
+      margin-left: 0;
+      &:before { content: ''; }
+    }
+  }
+}
+
 #articles {
   @include clearfix;
 
