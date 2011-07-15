@@ -60,18 +60,22 @@
             Zachary Voase
 
     - if @item[:kind] == "index"
-      %div.content-container
-        %div#meta.content{:about => "http://zacharyvoase.com/"}
-          %p.links
-            %a{:rel => "foaf:homepage", :href => "http://zacharyvoase.com/"} WWW
-            &#9733;
-            %a{:rel => "foaf:page", :href => "http://twitter.com/zacharyvoase"} Twitter
-            &#9733;
-            %a{:rel => "foaf:page", :href => "http://github.com/zacharyvoase"} GitHub
-            &#9733;
-            %a{:rel => "foaf:page", :href => "http://uk.linkedin.com/in/zacharyvoase"} CV/Résumé
-            &#9733;
-            %a{:rel => "foaf:mbox", :href => "mailto:z@zacharyvoase.com"} E-mail
+      %div#meta.content-container{:about => "http://zacharyvoase.com/"}
+        %p.copy.content
+          I’m a hacker, and I love to build stuff for the Web.
+
+        %nav.content#links
+          %ul
+            %li.first
+              %a{:rel => "foaf:homepage", :href => "http://zacharyvoase.com/"} WWW
+            %li
+              %a{:rel => "foaf:page", :href => "http://twitter.com/zacharyvoase"} Twitter
+            %li
+              %a{:rel => "foaf:page", :href => "http://github.com/zacharyvoase"} GitHub
+            %li
+              %a{:rel => "foaf:workplaceHomepage", :href => "http://dydra.com/"} Work
+            %li
+              %a{:rel => "foaf:mbox", :href => "mailto:z@zacharyvoase.com"} E-mail
 
       = render('_spacer')
 
