@@ -140,4 +140,4 @@ an extreme [network effect][].
 * [The Ludwig von Mises Institute](http://mises.org/)
 
 There's a discussion for this article over at
-[Hacker News](http://news.ycombinator.com).
+[Hacker News](http://news.ycombinator.com/item?id=3354525).
