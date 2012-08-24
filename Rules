@@ -37,13 +37,14 @@ compile '*' do
     filter :kramdown
     filter :rubypants
     filter :fix_entities
+    layout '/default/'
   when 'erb'
     filter :erb
+    layout '/default/'
   when 'haml'
     filter :haml, :attr_wrapper => '"'
+    layout '/default/'
   end
-
-  layout '/default/'
 end
 
 
@@ -64,7 +65,11 @@ route '/media/*/' do
 end
 
 route '/articles/*/' do
-  item.identifier.gsub(%r{^/articles/}, "/") + "index.html"
+  if item.binary?
+    item.identifier.gsub(%r{^/articles/}, "/").chop + "." + item[:extension]
+  else
+    item.identifier.gsub(%r{^/articles/}, "/") + "index.html"
+  end
 end
 
 route '/not-found/' do
