@@ -54,7 +54,7 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
   font-size: 14px;
 
   ul { text-align: center; }
-  a, a:visited { color: #333; }
+  a, a:visited { color: $grey; }
 }
 
 #footer p {
