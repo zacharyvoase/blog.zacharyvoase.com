@@ -13,4 +13,6 @@ kind: index
             %a.link{:href => rel_url_for(article), :rel => "rss:link"}
               %span{:property => "rss:title", :datatype => ""}= title_of(article)
             %span.date{:property => "dc:date", :content => article[:created_at].to_s, :datatype => "xsd:date"}<
-              = article[:created_at].strftime("%d %b %Y")
+              %span.date_day= article[:created_at].strftime("%d")
+              %span.date_month= article[:created_at].strftime("%b")
+              %span.date_year= article[:created_at].strftime("%Y")

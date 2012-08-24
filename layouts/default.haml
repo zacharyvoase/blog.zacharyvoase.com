@@ -32,7 +32,10 @@
 
     %link{:rel => "stylesheet", :href => "/media/css/style.css?#{ Time.now.to_i }", :media => "screen, projection"}
 
-    %script{:type => "text/javascript" }
+    %script{:type => "text/javascript", :src => "//use.typekit.net/jfx6whv.js"}
+    %script{:type => "text/javascript"} try{Typekit.load()}catch(e){}
+
+    %script{:type => "text/javascript"}
       :plain
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-9915287-1']);
