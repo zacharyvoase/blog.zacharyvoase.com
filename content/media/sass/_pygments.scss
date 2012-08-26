@@ -1,0 +1,40 @@
+pre > code {
+  .bold { font-weight: bold; }
+  .italic { font-style: italic; }
+
+  // I'm using @extend to effectively compress the resulting CSS.
+  .hll { background-color: #ffffcc }
+  .c { @extend .italic } /* Comment */
+  .err { border: 1px solid #FF0000 } /* Error */
+  .k { @extend .bold } /* Keyword */
+  .cm { @extend .italic } /* Comment.Multiline */
+  .c1 { @extend .italic } /* Comment.Single */
+  .cs { @extend .italic } /* Comment.Special */
+  .ge { @extend .italic } /* Generic.Emph */
+  .gh { @extend .bold } /* Generic.Heading */
+  .gp { @extend .bold } /* Generic.Prompt */
+  .gs { @extend .bold } /* Generic.Strong */
+  .gu { @extend .bold } /* Generic.Subheading */
+  .kc { @extend .bold } /* Keyword.Constant */
+  .kd { @extend .bold } /* Keyword.Declaration */
+  .kn { @extend .bold } /* Keyword.Namespace */
+  .kr { @extend .bold } /* Keyword.Reserved */
+  .s { @extend .italic } /* Literal.String */
+  .nc { @extend .bold } /* Name.Class */
+  .ni { @extend .bold } /* Name.Entity */
+  .ne { @extend .bold } /* Name.Exception */
+  .nn { @extend .bold } /* Name.Namespace */
+  .nt { @extend .bold } /* Name.Tag */
+  .ow { @extend .bold } /* Operator.Word */
+  .sb { @extend .italic } /* Literal.String.Backtick */
+  .sc { @extend .italic } /* Literal.String.Char */
+  .sd { @extend .italic } /* Literal.String.Doc */
+  .s2 { @extend .italic } /* Literal.String.Double */
+  .se { @extend .bold; @extend .italic } /* Literal.String.Escape */
+  .sh { @extend .italic } /* Literal.String.Heredoc */
+  .si { @extend .bold; @extend .italic } /* Literal.String.Interpol */
+  .sx { @extend .italic } /* Literal.String.Other */
+  .sr { @extend .italic } /* Literal.String.Regex */
+  .s1 { @extend .italic } /* Literal.String.Single */
+  .ss { @extend .italic } /* Literal.String.Symbol */
+}
