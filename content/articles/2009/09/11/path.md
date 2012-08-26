@@ -1,4 +1,4 @@
---- 
+---
 kind: article
 created_at: 2009-09-11
 title: "Easy Path Manipulation in Python"
@@ -12,6 +12,7 @@ Luckily, Jason Orendorff’s `path.py` module provides a very simple wrapper ove
 these path operations. It contains a single `path` class which you can use like
 this:
 
+    #!pycon
     >>> from path import path
     >>> homedir = path('/Users/zacharyvoase/')
     >>> homedir
@@ -29,6 +30,7 @@ overrides for URL manipulation.
 
 #### Path Manipulation
 
+    #!pycon
     >>> filename = homedir / 'file.txt'
     >>> filename
     path('/Users/zacharyvoase/file.txt')
@@ -38,21 +40,23 @@ overrides for URL manipulation.
 
 #### Filesystem Operations
 
+    #!pycon
     >>> filename.exists()
     False
     >>> filename.touch()
     >>> filename.exists()
     True
-    
+
     >>> homedir.isdir()
     True
     >>> homedir.listdir()
     [path('/Users/zacharyvoase/.bash_history'), ...]
 
-  
+
 
 #### Globs
 
+    #!pycon
     >>> homedir.files('*.txt')
     [path('/Users/zacharyvoase/file.txt')]
     >>> homedir.dirs('Desk*')
@@ -71,13 +75,14 @@ paver.path import path`.
 I like to put `path` to use in my Django settings module. Have a look at this
 for an example:
 
+    #!python
     from paver.path import path
-    
+
     PROJECT_ROOT = path(__file__).abspath().dirname()
-    
+
     MEDIA_ROOT = PROJECT_ROOT / 'media'
     UPLOAD_ROOT = PROJECT_ROOT / 'uploads'
-    
+
     TEMPLATE_DIRS = (
         PROJECT_ROOT / 'templates',
     )

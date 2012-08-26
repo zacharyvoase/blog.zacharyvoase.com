@@ -1,4 +1,4 @@
---- 
+---
 kind: article
 created_at: 2009-11-02
 title: "Bioinformatics and the Semantic Web"
@@ -69,7 +69,7 @@ protein (essentially a one-query lit review):
 
     PREFIX bioseq: <http://bioseq.org/>
     PREFIX ncbi: <http://www.ncbi.nlm.nih.gov/ontology#>
-    
+
     SELECT ?paper
     WHERE {
         # The specific sequence mentioned here has the paper as a citation.
@@ -142,7 +142,7 @@ have mostly been made up, but the real document could feasibly be this simple:
     @prefix bioseq: <http://bioseq.org/> .
     @prefix ncbi: <http://www.ncbi.nlm.nih.gov/ontology#> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-    
+
     <bioseq:a21268b77c91c67973efa8289cc42a62772d8c33>
         <ncbi:alphabet> <alphabets:unambiguous/dna>;
         <ncbi:chromosome> "1"^^<xsd:integer>;
@@ -156,7 +156,7 @@ the following ‘meaning’:
 
 *   We’re talking about the sequence identified by the URI
     `http://bioseq.org/a21268b77c91c67973efa8289cc42a62772d8c33`. This sequence:
-    
+
     *   Is expressed in the alphabet
         `http://www.ncbi.nlm.nih.gov/alphabets/unambiguous/dna`
         (i.e. unambiguous DNA);
@@ -186,7 +186,7 @@ we want to look for *all* unambiguous DNA sequences:
     PREFIX bioseq: <http://bioseq.org/>
     PREFIX ncbi: <http://www.ncbi.nlm.nih.gov/ontology#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    
+
     SELECT ?sequence
     WHERE {
         ?sequence ncbi:alphabet <alphabets:unambiguous/dna>

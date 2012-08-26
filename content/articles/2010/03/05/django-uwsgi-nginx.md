@@ -1,4 +1,4 @@
---- 
+---
 kind: article
 created_at: 2010-03-05
 title: "Deployment with uWSGI and nginx"
@@ -26,52 +26,60 @@ Let’s jump in.
 
 1.  Create a virtualenv. This will house a complete Python environment, and all
     the compiled nginx and uwsgi binaries:
-    
+
+        #!bash
         $ virtualenv examplesite
         $ cd examplesite/
         $ . bin/activate
-    
+
     I like to create mine in `/sites/` — for example, `/sites/example.com/`.
-    
+
 2.  Download the nginx and uWSGI tarballs into a `pkg/` directory:
-    
+
+        #!bash
         $ mkdir pkg && cd pkg/
         $ wget 'http://projects.unbit.it/downloads/uwsgi-0.9.4.2.tar.gz'
         $ wget 'http://nginx.org/download/nginx-0.7.65.tar.gz'
-    
+
 3.  Start by compiling uWSGI. I prefer to use the `ROCK_SOLID` mode, as this is
     for a production site:
-    
+
+        #!bash
         $ tar -xzvf uwsgi-0.9.4.2.tar.gz
         $ cd uwsgi-0.9.4.2/
         $ make -f Makefile.ROCK_SOLID
-    
+
     Note that you may need to edit `Makefile.ROCK_SOLID` for your particular
     version of Python. The last command will have created a binary called
     `uwsgi_rs`; move this into your virtualenv’s `bin/` directory and rename it
     to `uwsgi`:
-    
+
+            #!bash
             $ mv uwsgi_rs $VIRTUAL_ENV/bin/uwsgi
 
 4.  Next, you’ll compile nginx with the uWSGI extension module. Extract the
     nginx tarball and enter the directory:
-    
+
+        #!bash
         $ cd $VIRTUAL_ENV/pkg
         $ tar -xzvf nginx-0.7.65.tar.gz
         $ cd nginx-0.7.65/
-    
+
     You may have your own preferred setup for nginx; you just need to add a
     single option:
-    
+
+        #!bash
         $ ./configure --add-module=../uwsgi-0.9.4.2/nginx/
-    
+
     Now compile the web server:
-    
+
+        #!bash
         $ make
-    
+
     This will create an `nginx` binary in `objs/`; install this into the
     virtualenv:
-    
+
+        #!bash
         $ mv objs/nginx $VIRTUAL_ENV/bin/nginx
 
 You now have all the required (non-Python) software to deploy a Django project
@@ -117,15 +125,17 @@ And now for the main event.
   [dj-proj-conv]: http://blog.zacharyvoase.com/2010-02-03-django-project-conventions-revisited
 
 1.  Create an `etcs/production` directory to keep plain-text configs in:
-    
+
+        #!bash
         $ cd $VIRTUAL_ENV/PROJECT_ROOT
         $ mkdir -p etcs/production
-    
+
     Symlink `PROJECT_ROOT/etc/` to `PROJECT_ROOT/etcs/production/`, to represent
     the currently-activated config directory:
-    
+
+        #!bash
         $ ln -s $PROJECT_ROOT/etcs/production $PROJECT_ROOT/etc
-    
+
     This whole architecture is so that you can create different sets of
     plain-text configs for different deployments. Again, read my blog post for
     more information.
@@ -133,26 +143,29 @@ And now for the main event.
 2.  Now to configure nginx. There are a couple of required files which are
     imported into the config; you’ll need to add these to the config directory.
     Copy the file `mime.types` from the nginx tarball into `etcs/production`:
-    
+
+        #!bash
         $ cp $VIRTUAL_ENV/pkg/nginx-0.7.65/conf/mime.types etcs/production/
-    
+
     Then, add `uwsgi_params` from the uWSGI tarball:
-    
+
+        #!bash
         $ cp $VIRTUAL_ENV/pkg/uwsgi-0.9.4.2/nginx/uwsgi_params etcs/production/
 
 3.  What follows is the meat of the nginx configuration. Make sure you read
     *and understand* it thoroughly; there's nothing particularly difficult about
     it:
-    
+
+        #!nginx
         worker_processes  1;
         pid               pid/nginx.pid;
-        
+
         error_log         log/nginx-error.log;
-        
+
         events {
           worker_connections  1024;
         }
-        
+
         http {
           # Some sensible defaults.
           include               mime.types;
@@ -161,16 +174,16 @@ And now for the main event.
           client_max_body_size  20m;
           sendfile              on;
           gzip                  on;
-          
+
           # Directories
           client_body_temp_path tmp/client_body/  2 2;
           fastcgi_temp_path     tmp/fastcgi/;
           proxy_temp_path       tmp/proxy/;
           uwsgi_temp_path       tmp/uwsgi/;
-          
+
           # Logging
           access_log            log/nginx-access.log  combined;
-          
+
           # uWSGI serving Django.
           upstream django {
             # Distribute requests to servers based on client IP. This keeps load
@@ -179,22 +192,22 @@ And now for the main event.
             ip_hash;
             server unix:sock/uwsgi.sock;
           }
-          
+
           server {
             listen      80;
             server_name example.com;
             charset     utf-8;
-            
+
             # Django admin media.
             location /media/admin/ {
               alias lib/python2.6/site-packages/django/contrib/admin/media/;
             }
-            
+
             # Your project's static media.
             location /media/ {
               alias PROJECT_ROOT/media/;
             }
-            
+
             # Finally, send all non-media requests to the Django server.
             location / {
               uwsgi_pass  django;
@@ -202,22 +215,24 @@ And now for the main event.
             }
           }
         }
-    
+
     You should put this in `etcs/production/nginx.conf`; also, make sure you
     replace `PROJECT_ROOT`, `example.com` and `python2.6` with the appropriate
     values.
 
 4.  You now need to create the necessary directories. From the root of your
     virtualenv:
-    
+
+        #!bash
         $ mkdir tmp/ sock/ pid/ log/
 
 5.  Finally, you’ll need a module containing a WSGI callable called
     `application`. This is used by uWSGI. You can just put the following in a
     file called `wsgi.py` in your `PROJECT_ROOT`:
-    
+
+        #!python
         import django.core.handlers.wsgi
-        
+
         application = django.core.handlers.wsgi.WSGIHandler()
 
 And that’s it for configuration!
@@ -239,6 +254,7 @@ want to put a whole config here; instead I’ll tell you what you need to run.
 
 The command for nginx is very simple. From the root of your virtualenv:
 
+    #!bash
     $ bin/nginx -p `pwd`/ -c PROJECT_ROOT/etc/nginx.conf
 
 You may need to run `nginx` as root (e.g. via `sudo`) to listen on port 80; I
@@ -253,6 +269,7 @@ As I mentioned before, uWSGI’s ‘configuration’ is made up of the command-l
 arguments you choose to pass to it. See the output of `uwsgi -h` for detailed
 information. Here’s a very simple example (but one which works fine):
 
+    #!bash
     $ bin/uwsgi -p 4 -s sock/uwsgi.sock -H `pwd`/ PROJECT_NAME.wsgi
 
 The breakdown:

@@ -22,6 +22,7 @@ couple of JS libraries. Using [homebrew][]:
 
   [homebrew]: http://mxcl.github.com/homebrew/
 
+    #!bash
     brew install node npm
     # Add NODE_PATH to your shell environment and config at the same time!
     `echo 'export NODE_PATH=/usr/local/lib/node' | tee -a ~/.zsh_profile`
@@ -38,6 +39,7 @@ have faith in your Googling abilities.
 Version zero’s client will consist of a single HTML file; start with a basic
 skeleton in a file called `index.html`:
 
+    #!html
     <!DOCTYPE html>
     <html>
       <head>
@@ -63,6 +65,7 @@ skeleton in a file called `index.html`:
 
 Now for the client JavaScript (which you should add to the empty `<script>`):
 
+    #!js
     var socket = new io.Socket();
 
     socket.connect();
@@ -87,6 +90,7 @@ beginning of the `<ul>`.
 Add the following to a file called `serve.js`, in the same directory as
 `index.html`:
 
+    #!js
     var http = require('http'),
         fs = require('fs'),
         TwitterNode = require('twitter-node').TwitterNode,
@@ -150,6 +154,7 @@ disconnects, we simply remove that listener from the Twitter client.
 If you’ve set `node.js` up correctly, you should be able to run the following
 from your working directory:
 
+    #!bash
     node serve.js
 
 Now browse to <http://localhost:4000/>. You should see a fast-moving stream of

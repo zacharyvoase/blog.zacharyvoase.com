@@ -1,4 +1,4 @@
---- 
+---
 kind: article
 created_at: 2009-09-08
 title: "Serving Authenticated Static Files with Django"
@@ -67,6 +67,7 @@ setting a single HTTP header. First, you’ll need to configure your web server 
 accept the header. For lighttpd + FastCGI setups, you can do this with a single
 option in your `lighttpd.conf` file:
 
+    #!lighttpd
     fastcgi.server = (
       "/mysite.fcgi" => (
         "main" => (
@@ -92,20 +93,21 @@ different; you can read about it at the corresponding
 
 Here’s how you might use the header from your application:
 
+    #!python
     import os
     import django.contrib.auth.decorators as auth_decorators
     import django.http
-    
+
     # This would be best placed in your settings file.
     STATIC_ROOT = '/home/user/myproject/static/'
-    
+
     def get_absolute_filename(filename='', safe=True):
         if not filename:
             return os.path.join(STATIC_ROOT, 'index')
         if safe and '..' in filename.split(os.path.sep):
             return get_absolute_filename(filename='')
         return os.path.join(STATIC_ROOT, filename)
-    
+
     @auth_decorators.login_required
     def retrieve_file(request, filename=''):
         abs_filename = get_absolute_filename(filename)
@@ -116,8 +118,9 @@ Here’s how you might use the header from your application:
 
 And the URLconf:
 
+    #!python
     from django.conf.urls.defaults import *
-    
+
     urlpatterns = patterns('',
         (r'^file/(?P<filename>.*)$', 'myapp.views.retrieve_file'),
     )

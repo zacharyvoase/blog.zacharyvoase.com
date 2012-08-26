@@ -1,4 +1,4 @@
---- 
+---
 kind: article
 created_at: 2010-01-02
 title: "A (Nicer) Redis Client for EventMachine"
@@ -16,8 +16,9 @@ via Ruby blocks. A very basic example of what that looks like follows:
   [em-redis]: http://github.com/madsimian/em-redis
   [cps]: http://en.wikipedia.org/wiki/Continuation-passing_style
 
+    #!ruby
     require 'em-redis'
-    
+
     EventMachine.run do
       redis = EventMachine::Protocols::Redis.connect
       redis.set("foo", "bar") do |_|
@@ -33,8 +34,9 @@ this brings with it, due to the fact that most Ruby code is written in a non-CPS
 style, and written to work with non-CPS programs. What we’d really like to do is
 the following:
 
+    #!ruby
     require 'em-redis'
-    
+
     EventMachine.run do
       redis = EventMachine::Protocols::Redis.connect
       redis.set("foo", "bar")
@@ -60,11 +62,12 @@ seamlessly from within imperative code.
 </ins>
 
 In RSpec, `call/cc` would pass the following test:
-  
+
+    #!ruby
     def myfunc
       yield 3
     end
-    
+
     callcc(method :myfunc).should == 3
 
 So in a Ruby-specific context, it transforms a `yield` statement into `return`.
@@ -75,8 +78,9 @@ arguments to pass along.
 Applied to Redis + EventMachine, we should be able to translate the earlier
 fubarity into something a little cleaner:
 
+    #!ruby
     require 'em-redis'
-    
+
     EventMachine.run do
       redis = EventMachine::Protocols::Redis.connect
       callcc(redis.method(:set), "foo", "bar")
@@ -87,12 +91,13 @@ So it’s a little cleaner, but not perfect. We don’t want to have to wrap eve
 Redis operation with a `callcc()` invocation. So a better idea is to
 monkey-patch the `Redis` EventMachine protocol to use `callcc` at a lower level:
 
+    #!ruby
     module EventMachine::Protocols::Redis
       alias :cps_inline_command :inline_command
       def inline_command(*args)
         callcc(method(:cps_inline_command), *args)
       end
-      
+
       alias :cps_multiline_command :multiline_command
       def multiline_command(command, *args)
         callcc(method(:cps_multiline_command), command, *args)
@@ -105,8 +110,9 @@ using `callcc()`.
 
 Now the example code looks like this:
 
+    #!ruby
     require 'em-redis'
-    
+
     EventMachine.run do
       redis = EventMachine::Protocols::Redis.connect
       redis.set("foo", "bar")
@@ -131,39 +137,41 @@ We all know and love Ruby’s `yield` and blocks. But unfortunately, a block
 passed to a method will not be available implicitly further down the stack. The
 problem is demonstrated here:
 
+    #!ruby
     def a(&block)
       b(&block)
     end
-    
+
     def b(&block)
       c(&block)
     end
-    
+
     def c
       puts "ready to receive"
       val = yield
       puts "received: #{ val.inspect }"
     end
-    
+
     a { "some_value" }
 
 In order for `c` to be able to call the block, it must be explicitly passed down
 by each function in the stack. With Fibers, the code becomes:
 
+    #!ruby
     def a
       b
     end
-    
+
     def b
       c
     end
-    
+
     def c
       puts "ready to receive"
       val = Fiber.yield
       puts "received: #{ val.inspect }"
     end
-    
+
     f = Fiber.new &(method :a)
     f.resume # get the fiber to the first `Fiber.yield` call.
     f.resume "some_value"
@@ -173,14 +181,14 @@ A few things to note here:
 *   `c()` calls `Fiber.yield` instead of `yield`. This is a non-local `yield`
     which will propagate up to whatever called the current fiber’s `resume()`
     method.
-    
+
 *   The code which does the calling becomes a little more complex, but none of
     the application code in `a()` or `b()` need be aware that `c()` will yield.
     Nevertheless, the pattern shown here can be abstracted away, so that
     eventually we may only need:
-    
+
             fiblock(method :a) { "some_value" }
-    
+
 *   We must explicitly run `a()` in a Fiber; this is a trade-off against having
     to explicitly acknowledge the presence of a block throughout the stack (as
     in the previous code).
@@ -190,12 +198,13 @@ A few things to note here:
 `call/cc` can be implemented relatively simply with Fibers, but there are two
 distinct forms:
 
+    #!ruby
     def callcc_inner(proc, *args)
       Fiber.new do
         proc.call(*args) { |*yargs| Fiber.yield(*yargs) }
       end.resume
     end
-    
+
     def callcc_outer(proc, *args)
       curr_fiber = Fiber.current
       proc.call(*args) { |*rargs| curr_fiber.resume(*rargs) }
@@ -225,6 +234,7 @@ called with returns *before* it yields.
 
 To revisit the CPS employed in the Redis bindings:
 
+    #!ruby
     redis.set("foo", "bar") do |_|
       redis.get("foo") do |value|
         puts value
@@ -236,6 +246,7 @@ adds the block to a list of event loop callbacks); as such, we should use
 `callcc_outer()` throughout the modified `EventMachine::Protocols::Redis`. The
 entirety of the code needed to patch `em-redis` is:
 
+    #!ruby
     # File: redis-fiber.rb
     require 'fiber'
     require 'em-redis'
@@ -276,6 +287,7 @@ entirety of the code needed to patch `em-redis` is:
 
 And the code I use to test it in a very quick-n-dirty way:
 
+    #!ruby
     # file: redis-fiber-test.rb
     require 'redis-fiber'
 

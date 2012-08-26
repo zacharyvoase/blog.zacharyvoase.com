@@ -1,4 +1,4 @@
---- 
+---
 kind: article
 created_at: 2009-05-17
 title: "Django Tip: Staff-only Access to Databrowse"
@@ -14,10 +14,11 @@ there’s something they don’t mention which I think is really nifty.
 Down at the bottom of that page, it recommends using the `login_required()`
 decorator to restrict access to registered users, like so:
 
+    #!python
     from django.conf.urls.defaults import *
     from django.contrib import databrowse
     from django.contrib.auth.decorators import login_required
-    
+
     urlpatterns = patterns('',
         (r'^databrowse/(.*)$', login_required(databrowse.site.root)),
         (r'^login/$', 'django.contrib.auth.views.login'),
@@ -26,10 +27,11 @@ decorator to restrict access to registered users, like so:
 But if you want to restrict access to staff (i.e. users who can access the
 admin), you’ll have to use another (undocumented) decorator instead.
 
+    #!python
     from django.conf.urls.defaults import *
     from django.contrib import databrowse
     from django.contrib.admin.views.decorators import staff_member_required
-    
+
     urlpatterns = patterns('',
         (r'^databrowse/(.*)$', staff_member_required(databrowse.site.root)),
     )

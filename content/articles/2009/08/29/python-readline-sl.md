@@ -36,6 +36,7 @@ Readline called `libedit`, due to licensing issues (GNU Readline is GPL, so
 Apple can’t distribute it with their OS). Since Snow Leopard comes with Python
 2.5.4 *and* 2.6.1, you can run:
 
+    #!bash
     $ sudo easy_install-2.5 readline
 
 to get a proper `readline` going for Python 2.5 straight away. However, it’s a
@@ -50,6 +51,7 @@ distribution in egg format. For those who want to vet the process I followed to
 create this, please see below. To install the egg straight away, just run the
 following command:
 
+    #!bash
     $ sudo easy_install 'http://idisk.mac.com/zacharyvoase-Public/readline/readline-2.5.1-py2.6-macosx-10.6-universal.egg'
 
 If you want to replicate my steps yourself, start off in a fresh directory (it
@@ -59,6 +61,7 @@ GNU Compiler Collection (which you’ll need to compile libraries). Begin by
 downloading [readline](http://pypi.python.org/pypi/readline) from PyPI,
 extracting it, and entering the new directory:
 
+    #!bash
     $ curl 'http://pypi.python.org/packages/source/r/readline/readline-2.5.1.tar.gz' -O
     $ tar -xzf readline-2.5.1.tar.gz
     $ cd readline-2.5.1/
@@ -79,6 +82,7 @@ The directory layout will look like this:
 In this directory, you now need to download GNU Readline v0.6 (the latest
 version) and build it. Follow these steps:
 
+    #!bash
     $ curl 'ftp://ftp.cwru.edu/pub/bash/readline-6.0.tar.gz' -O
     $ tar -xzf readline-6.0.tar.gz
     $ cd readline-6.0/
@@ -99,6 +103,7 @@ Now that you've built GNU Readline, just `cd ..` back into the directory above
 and rename the directory you just left from `readline-0.6` to just `readline`
 (that is, `mv readline-0.6/ readline/`) Now run:
 
+    #!bash
     $ python setup.py build
 
 This will output a lot of text but should eventually tell you whether or not the
@@ -108,6 +113,7 @@ module. To do this, run `python setup.py develop` (which will install it as a
 development package), open a new console session somewhere else and run the
 following in an interactive Python interpreter:
 
+    #!pycon
     >>> import readline
     >>> import rlcompleter
     >>> readline.parse_and_bind('tab: complete')

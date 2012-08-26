@@ -60,11 +60,13 @@ requirement.
 I saved the best ’til last. Take a look at the source of this page. You’ll
 notice a few things that aren’t so common—the doctype:
 
+    #!html
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
       "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 
 The big set of namespace declarations:
 
+    #!html
     <html lang="en" xml:lang="en"
       xmlns:content="http://purl.org/rss/1.0/modules/content/"
       xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -78,6 +80,7 @@ The big set of namespace declarations:
 
 `property` attributes on almost every text-containing element:
 
+    #!html
     <h1 datatype="" property="rss:description">
       The Blog of Zachary Voase, brought to you in glorious HyperText.
     </h1>
@@ -92,6 +95,7 @@ structure of your HTML documents, such that they provide semantic context
 
 To get a valid [RSS 1.0](http://web.resource.org/rss/1.0/) feed for this site:
 
+    #!bash
     rapper -q -i rdfa -o rdfxml-abbrev 'http://blog.zacharyvoase.com/'
 
 <ins>
@@ -104,6 +108,7 @@ fabric of the page itself. `http://blog.zacharyvoase.com/` *is* an RSS 1.0 feed,
 although represented in XHTML+RDFa instead of RDF/XML. Ideally I’d like to have
 the following retrieve the XML version of the feed:
 
+    #!bash
     curl -H 'Accept: application/rss+xml' 'http://blog.zacharyvoase.com/'
 
 I’ll set this up once I figure out all the Apache options.

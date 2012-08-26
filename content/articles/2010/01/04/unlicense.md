@@ -1,4 +1,4 @@
---- 
+---
 kind: article
 created_at: 2010-01-04
 title: "Why I’m Going Public"
@@ -61,7 +61,7 @@ might be breaking a rule? Even though I think the MIT license is relatively loos
 
     Permission is hereby granted ...snip... subject to the following
     conditions:
-    
+
     The above copyright notice and this permission notice shall be
     included in all copies or substantial portions of the Software.
 
@@ -78,7 +78,7 @@ The way public domain works is as follows:
 *   You copy-and-paste my code into your application, and if you’re gracious
     enough, you send me a tweet or an e-mail to let me know. Perhaps you even
     acknowledge my contribution in an AUTHORS file somewhere.
-    
+
     But you don’t have to.
 
 Now that’s what I call freedom.

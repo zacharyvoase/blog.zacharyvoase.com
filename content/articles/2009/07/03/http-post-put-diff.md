@@ -29,10 +29,12 @@ There’s also a handy paragraph to explain the difference between POST and PUT:
 It doesn’t mention anything about the difference between updating/creating,
 because that’s not what it’s about. It’s about the difference between this:
 
+    #!python
     obj.set_attribute(value) # A POST request.
 
 And this:
 
+    #!python
     obj.attribute = value # A PUT request.
 
 So please, stop the spread of this popular misconception. Read your RFCs.

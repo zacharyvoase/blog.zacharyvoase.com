@@ -1,4 +1,4 @@
---- 
+---
 kind: article
 created_at: 2009-12-09
 title: "Fixing Django Management Commands"
@@ -57,11 +57,12 @@ module:
 Now we need to write the command. Open up `hello.py` in your favourite editor
 and add the following text:
 
+    #!python
     from django.core.management.base import NoArgsCommand
-    
+
     class Command(NoArgsCommand):
         help = "Print a cliche to the console."
-        
+
         def handle_noargs(self, **options):
             print "Hello, World!"
 
@@ -70,20 +71,21 @@ and the text will be printed to the screen.
 
 But we want to write a command which accepts arguments, right?
 
+    #!python
     # file: myapp/management/commands/echo.py
     # example: ./manage.py echo some words here
     #   => some words here
     from optparse import make_option
     from django.core.management.base import BaseCommand
-    
+
     class Command(BaseCommand):
         help = "Echo all positional arguments."
-        
+
         option_list = BaseCommand.option_list + [
             make_option('-n', dest='no_newline', action='store_true',
                         default=False, help="Don't print a newline afterwards.")
         ]
-        
+
         def handle(self, *args, **options):
             if options.get('no_newline', False):
                 print ' '.join(args), # the comma is significant.
@@ -121,21 +123,22 @@ arguments, variadic arguments and sub-parsers.
 Let’s write a speculative example of how we would *like* to write management
 commands. In the file `myapp/commands.py`:
 
+    #!python
     from django.core.management.commands import *
-    
+
     @command
     def hello(args):
         """Print a cliche to the console."""
-        
+
         print "Hello, World!"
-    
+
     @command
     @argument('-n', '--no-newline', action='store_true',
               help="Don't print a newline afterwards.")
     @argument('words', nargs='*')
     def echo(args):
         """Echo all positional arguments."""
-        
+
         if args.no_newline:
             print ' '.join(args.words),
         else:
@@ -158,19 +161,20 @@ There are a few things to note about this example:
 *   Decorators are used throughout, but this need not be the case. A
     decorator-less example:
 
-            def echo(args):
+        #!python
+        def echo(args):
             """Echo all positional arguments."""
-            
+
             if args.no_newline:
                 print ' '.join(args.words),
             else:
                 print ' '.join(args.words)
-        
+
         echo = Command(echo)
         echo.add_argument('-n', '--no-newline', action='store_true',
                           help="Don't print a newline afterwards.")
         echo.add_argument('words', nargs='*')
-    
+
     The `Command` class would wrap the function and provide the `add_argument()`
     method.
 
@@ -216,26 +220,27 @@ library can only handle the `--keyword value` type of argument. However,
 problem. If custom `app_label` and `model_name` types were implemented by
 Django, code could look like this:
 
+    #!python
     from django.core.management.commands import *
-    
+
     @command
     @argument('app', type=app_label)
     def models(args):
         """List the models and table names for the specified app."""
-        
+
         from django.db.models import Model
-        
+
         print "Name\tDB Table"
         print '-' * 20
         for name, model in vars(args.app.models).items():
             if isinstance(model, type) and issubclass(model, Model):
                 print model.__name__ + '\t' + model._meta.db_table
-    
+
     @command
     @argument('model', type=model_name)
     def fields(args):
         """List the fields for the specified model."""
-        
+
         for field in args.model._meta.fields:
             print field.name
 

@@ -56,6 +56,7 @@ libraries allow you to operate on the RDF data at the highest or lowest levels.
 The most basic action is recording a single transaction in the general journal.
 This shell command:
 
+    #!bash
     $ uta record 30 assets/current/cash revenue/service "Consulting" \
         --with-comment --on 2010-12-28
     Gave John Doe my services for 1 hour in exchange for $30.
@@ -63,6 +64,7 @@ This shell command:
 
 Evaluates to the following Ruby code:
 
+    #!ruby
     Transaction.generate do |tr|
       tr.label = "Consulting"
       tr.comment = "Gave John Doe my services for 1 hour in exchange for $30."

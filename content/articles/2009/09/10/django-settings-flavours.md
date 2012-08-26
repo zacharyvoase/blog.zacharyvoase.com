@@ -1,4 +1,4 @@
---- 
+---
 kind: article
 created_at: 2009-09-10
 title: "Django Settings Flavours"
@@ -67,11 +67,13 @@ The only issue with this solution, as it stands, is how to get the settings from
 `from myproject.settings.common import *`, but that ties you into an absolute
 import. Instead, add the following function to the bottom of `common.py`:
 
+    #!python
     def _merge(local_vars):
         local_vars.update((k, v) for k, v in globals().items() if k[0] != '_')
 
 And at the top of `development.py` (or `production.py`, et cetera):
 
+    #!python
     from . import common; common._merge(vars())
 
 This is essentially a workaround for the fact that relative imports cannot use
@@ -89,16 +91,18 @@ underscore) to `development.py`.
 It’s a concept best demonstrated by example. Let’s say `common.py` contained the
 following:
 
+    #!python
     A = 1
     B = 2
-    
+
     def _merge(local_vars):
         local_vars.update((k, v) for k, v in globals().items() if k[0] != '_')
 
 And `development.py` contained this:
 
+    #!python
     from . import common; common._merge(vars())
-    
+
     C = 3
     print (A, B, C)
 

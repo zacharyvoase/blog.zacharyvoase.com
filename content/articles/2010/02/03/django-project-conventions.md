@@ -1,4 +1,4 @@
---- 
+---
 kind: article
 created_at: 2010-02-03
 title: "Django Project Conventions, Revisited"
@@ -122,18 +122,19 @@ Begin by breaking your settings into two groups: **common** settings, and
     handlers—these can optionally be added to the root logger in the
     deployment-specific configuration. For example, in my common settings, I
     always do:
-    
+
+        #!python
         import logging
-        
+
         LOG_DATE_FORMAT = '%d %b %Y %H:%M:%S'
         LOG_FORMATTER = logging.Formatter(
             u'%(asctime)s | %(levelname)-7s | %(name)s | %(message)s',
             datefmt=LOG_DATE_FORMAT)
-        
+
         CONSOLE_HANDLER = logging.StreamHandler() # defaults to stderr
         CONSOLE_HANDLER.setFormatter(LOG_FORMATTER)
         CONSOLE_HANDLER.setLevel(logging.DEBUG)
-    
+
     In my development settings, I add `CONSOLE_HANDLER` to `logging.root`; in
     production, however, I use a file handler.
 
@@ -168,10 +169,12 @@ something like this:
 
 To get these settings working, you just need to put the following at the top of each deployment-specific settings file:
 
+    #!python
     from common import *
 
-You’ll also need to set the `DJANGO_SETTINGS_MODULE` environment variable. From the `PROJECT_ROOT`: 
+You’ll also need to set the `DJANGO_SETTINGS_MODULE` environment variable. From the `PROJECT_ROOT`:
 
+    #!bash
     $ export DJANGO_SETTINGS_MODULE=settings.development # Mutatis mutandem
     $ echo "!!" >> ../bin/activate
 
@@ -184,12 +187,13 @@ In order to be able to import stuff from the `apps/` and `libs/` directories,
 you’ll need to add them to the module search path. Fortunately, this couldn’t be
 simpler: you’ll need to have the following in `settings/common.py`:
 
+    #!python
     import sys
     from path import path
-    
+
     PROJECT_ROOT = path(__file__).abspath().dirname().dirname()
     SITE_ROOT = PROJECT_ROOT.dirname()
-    
+
     sys.path.append(SITE_ROOT)
     sys.path.append(PROJECT_ROOT / 'apps')
     sys.path.append(PROJECT_ROOT / 'libs')
@@ -219,20 +223,22 @@ It will, however, raise a deprecation warning when you import it. Just use the
 following trick to avoid that when you import it the first time (usually at the
 top of `settings/common.py`):
 
+    #!python
     import warnings; warnings.simplefilter("ignore")
     from path import path
 
 You can then reap the rewards like so:
 
+    #!python
     ## Directories
     # Call `dirname()` twice because we’re at `PROJECT_ROOT/settings/xxx.py`
     PROJECT_ROOT = path(__file__).abspath().dirname().dirname()
     SITE_ROOT = PROJECT_ROOT.dirname()
     MEDIA_ROOT = PROJECT_ROOT / 'media'
-    
+
     ## Logging
     FILE_HANDLER = logging.FileHandler(SITE_ROOT / 'log' / 'django.log')
-    
+
     ## Database Setup
     DATABASE_ENGINE = 'sqlite3'
     DATABASE_NAME = SITE_ROOT / 'db' / 'development.sqlite3'

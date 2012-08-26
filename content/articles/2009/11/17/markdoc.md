@@ -82,6 +82,7 @@ take me a month and a half to complete.
 It’s pretty simple, really. For those familiar with Python’s installation
 routine, this is the usual:
 
+    #!bash
     $ hg clone http://bitbucket.org/zacharyvoase/markdoc
     $ cd markdoc/
     $ pip install -r REQUIREMENTS
@@ -109,6 +110,7 @@ This is also pretty simple.
 `markdoc init` creates the wiki skeleton; this is just three directories and a
 single file, all empty to begin with.
 
+    #!bash
     $ markdoc init my-wiki
     # ...logging output...
     $ ls -A my-wiki/
@@ -121,6 +123,7 @@ Enter your wiki and start editing files in the `wiki/` sub-directory. Wiki pages
 must end in one of `[.md, .mdown, .markdown, .wiki, .text]`; this may be
 configured by editing the wiki’s `markdoc.yaml` file.
 
+    #!bash
     $ cd my-wiki/
     $ vim wiki/somefile.md
     # ...edit some markdown files...
@@ -128,6 +131,7 @@ configured by editing the wiki’s `markdoc.yaml` file.
 After you’ve edited enough, and you want to see your files rendered, just run
 `markdoc build` in the wiki root.
 
+    #!bash
     $ markdoc build
     # ...more logging output...
 
@@ -135,6 +139,7 @@ That will build your files into `.html/`, which should now contain a number of
 HTML files corresponding to all the pages you wrote. You can now serve up these
 files with `markdoc serve`:
 
+    #!bash
     $ markdoc serve
     # ...even more logging output...
 
@@ -166,6 +171,7 @@ example. You can find the complete source for the wiki in the `doc/` directory
 in the [repo](http://bitbucket.org/zacharyvoase/markdoc). To see the
 documentation in a browser (assuming you’ve cloned the repo locally):
 
+    #!bash
     $ cd markdoc/ # the Markdoc source repository
     $ cd doc/
     $ markdoc build && markdoc serve
