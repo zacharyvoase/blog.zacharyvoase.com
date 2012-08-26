@@ -37,6 +37,7 @@ compile '*' do
     filter :kramdown
     filter :rubypants
     filter :fix_entities
+    filter :colorize_syntax, :default_colorizer => :pygmentize
     layout '/default/'
   when 'erb'
     filter :erb
