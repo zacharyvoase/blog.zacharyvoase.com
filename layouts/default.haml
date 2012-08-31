@@ -1,8 +1,7 @@
-!!! XML
-!!! RDFa
+!!! 5
 %html{html_attrs("en"), xmlns}
   %head
-    %meta{'http-equiv' => "Content-Type", :content => "application/xhtml+xml; charset=utf-8"}
+    %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8"}
     %meta{:name => "description", :content => "The Blog of Zachary Voase, brought to you in glorious HyperText."}
 
     %meta{:property => "dc:creator", :content => "Zachary Voase"}
@@ -21,7 +20,7 @@
       %link{     :rel => "rss:items",     :href => "http://blog.zacharyvoase.com/#articles"}
 
       %meta{:property => "sy:updatePeriod",    :content => "daily"}
-      %meta{:property => "sy:updateFrequency", :content => "2"}
+      %meta{:property => "sy:updateFrequency", :content => "1"}
       %meta{:property => "sy:updateBase",      :content => "2010-05-08T12:00+00:00"}
 
     - elsif item[:kind] == "article"
@@ -30,13 +29,12 @@
       %meta{:property => "rss:title",  :content => title_of(@item)}
       %link{:rel =>      "rss:link",   :content => rel_url_for(@item)}
 
-    %link{:rel => "stylesheet", :href => "/media/css/style.css?#{ Time.now.to_i }", :media => "screen, projection"}
+    %link{:rel => "stylesheet", :href => "/media/css/style.css?#{mtime("^/media/sass/")}", :media => "screen, projection"}
 
     %script{:type => "text/javascript", :src => "//use.typekit.net/jfx6whv.js"}
-    %script{:type => "text/javascript"} try{Typekit.load()}catch(e){}
-
     %script{:type => "text/javascript"}
       :plain
+        try{Typekit.load()}catch(e){}
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-9915287-1']);
         _gaq.push(['_trackPageview']);
@@ -46,9 +44,12 @@
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
         })();
 
-    %title
-      = title_of(@item)
-      | Zack’s Blog.
+    - if item[:kind] == "index"
+      %title Zack’s Blog
+    - else
+      %title
+        = title_of(@item)
+        | Zack’s Blog
 
   %body{:id => @item[:id]}
     %div#header-container
