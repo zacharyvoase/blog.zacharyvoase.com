@@ -152,11 +152,15 @@ code {
   line-height: 24px;
 }
 
-pre code {
-  color: $grey * 0.5;
-  font-family: $monospace-block;
-  font-size: 12px;
-  line-height: 18px;
+pre {
+  white-space: normal;
+  & > code {
+    color: $grey * 0.5;
+    font-family: $monospace-block;
+    font-size: 12px;
+    line-height: 18px;
+    white-space: pre;
+  }
 }
 
 blockquote { color: $grey / 2; }
