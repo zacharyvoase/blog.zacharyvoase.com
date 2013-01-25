@@ -94,7 +94,7 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
   }
 }
 
-div.article {
+div.article, div.page {
   text-rendering: optimizeLegibility;
 
   a.index-link {
@@ -144,8 +144,8 @@ a {
   &:hover { text-decoration: underline; }
   &:visited, &:active { color: #333; }
 
-  // Links in the body of an article.
-  .article .contents & {
+  // Links in the body of an article/page.
+  .article .contents &, .page .contents & {
     text-decoration: underline;
 
     &:visited { color: $grey; }
