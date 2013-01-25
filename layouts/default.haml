@@ -60,26 +60,12 @@
             Zachary Voase
         - else
           %h1<
-            %span.prefix The Blog of
-            Zachary Voase
+            %a{:href => "/"}<
+              %span.prefix The Blog of
+              Zachary Voase
 
-    - if @item[:kind] == "index"
-      %div#meta.content-container{:about => "http://zacharyvoase.com/"}
-        %p.copy.content
-          I’m a hacker, and I love to build stuff for the Web.
-
-        %nav.content#links
-          %ul
-            %li.first
-              %a{:rel => "foaf:page", :href => "http://twitter.com/zacharyvoase"} Twitter
-            %li
-              %a{:rel => "foaf:page", :href => "http://github.com/zacharyvoase"} GitHub
-            %li
-              %a{:rel => "foaf:mbox", :href => "mailto:z@zacharyvoase.com"} E-mail
-            %li
-              %a{:rel => "foaf:page", :href => "http://meat.io/"} Food
-
-      = render('_spacer')
+    = render('_about')
+    = render('_spacer')
 
     - if @item[:kind] == 'article'
       = render('_article', :item => @item, :content => content)
