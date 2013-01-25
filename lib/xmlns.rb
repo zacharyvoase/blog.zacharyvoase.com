@@ -6,6 +6,7 @@ XMLNS = {
   "foaf" => "http://xmlns.com/foaf/0.1/",
   "rss" => "http://purl.org/rss/1.0/",
   "sy" => "http://purl.org/rss/1.0/modules/syndication/",
+  "og" => "http://ogp.me/ns#",
   "xsd" => "http://www.w3.org/2001/XMLSchema",
 }
 
