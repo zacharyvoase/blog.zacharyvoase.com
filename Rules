@@ -73,6 +73,10 @@ route '/articles/*/' do
   end
 end
 
+route '/favicon/' do
+  '/favicon.ico'
+end
+
 route '/not-found/' do
   "/not-found.html"
 end
