@@ -1,5 +1,5 @@
 ---
-title: "Hire Me"
+title: "Hiring Me"
 kind: page
 ---
 
