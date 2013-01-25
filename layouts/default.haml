@@ -69,6 +69,8 @@
 
     - if @item[:kind] == 'article'
       = render('_article', :item => @item, :content => content)
+    - elsif @item[:kind] == 'page'
+      = render('_page', :item => @item, :content => content)
     - else
       = content
 
