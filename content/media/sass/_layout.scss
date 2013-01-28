@@ -2,6 +2,13 @@
 @import "_border-radius";
 @import "_colors";
 
+@mixin mobile {
+  @media only screen and (max-width: 640px),
+         only screen and (max-device-width: 640px) {
+    @content;
+  }
+}
+
 @mixin container {
   clear: both;
   float: left;
@@ -14,7 +21,7 @@
   margin: 0 auto;
   width: 640px;
 
-  @media screen and (max-width:640px) {
+  @include mobile {
     width: 90%;
     padding-left: 5%;
     padding-right: 5%;
@@ -35,7 +42,7 @@ body, html {
   #header {
     @include section;
 
-    @media screen and (max-width: 640px) {
+    @include mobile {
       width: 100%;
       padding-left: 0;
       padding-right: 0;
@@ -46,6 +53,8 @@ body, html {
       width: 75%;
       margin: 0;
       padding: 40px 12.5%;
+
+      @include mobile { padding: 10px 12.5%; }
 
       .prefix { display: block; }
     }
@@ -64,7 +73,7 @@ body, html {
     padding: 20px 0 0 0;
   }
 
-  @media screen and (max-width: 640px) {
+  @include mobile {
     #index & div.content { padding-top: 10px; }
   }
 }
@@ -74,14 +83,14 @@ body, html {
 
   border-top: 8px solid $teal;
   padding-bottom: 20px;
-  @media screen and (max-width:640px) {
+  @include mobile {
     padding-bottom: 0;
   }
 
   #footer {
     @include section;
     @include border-radius-bottom(10px);
-    @media screen and (max-width:640px) {
+    @include mobile {
       @include border-radius-bottom(0);
     }
 
@@ -154,7 +163,7 @@ body, html {
     .link { white-space: nowrap; }
   }
 
-  @media screen and (max-width: 640px) {
+  @include mobile {
     margin-top: 0;
     margin-bottom: 10px;
 
@@ -190,14 +199,9 @@ blockquote, pre {
   @include border-radius(5px);
 
   background-color: $grey * 2;
-  float: left;
-  min-width: 640px - (10px * 2);
   padding: 10px;
-  @media screen and (max-width:640px) {
-    float: none;
-    overflow-x: scroll;
-    min-width: 0;
-  }
+  float: none;
+  overflow-x: scroll;
 }
 
 blockquote {

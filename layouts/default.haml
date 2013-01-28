@@ -3,6 +3,7 @@
   %head
     %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8"}
     %meta{:name => "description", :content => "The Blog of Zachary Voase, brought to you in glorious HyperText."}
+    %meta{:name => "viewport", :content => "width=device-width"}
 
     %meta{:property => "og:image:url", :content => "http://gravatar.com/avatar/fcd3a40babe606ef30cb342a6a74c54c.png"}
     %meta{:property => "og:image:secure_url", :content => "https://secure.gravatar.com/avatar/fcd3a40babe606ef30cb342a6a74c54c.png"}
@@ -31,7 +32,7 @@
       %meta{:property => "rss:title",  :content => title_of(@item)}
       %link{:rel =>      "rss:link",   :content => rel_url_for(@item)}
 
-    %link{:rel => "stylesheet", :href => "/media/css/style.css?#{mtime("^/media/sass/")}", :media => "screen, projection"}
+    %link{:rel => "stylesheet", :href => "/media/css/style.css", :media => "screen, projection"}
 
     %script{:type => "text/javascript", :src => "//use.typekit.net/jfx6whv.js"}
     %script{:type => "text/javascript"}
