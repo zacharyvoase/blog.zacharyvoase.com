@@ -32,6 +32,10 @@ p, fieldset, table, pre {
   margin-bottom: 26px;
 }
 
+@include mobile {
+  img { width: 100%; }
+}
+
 body, html {
   background-color: $teal;
 }
