@@ -28,12 +28,21 @@
   }
 }
 
-p, fieldset, table, pre {
+hr {
+  margin: 0 0 26px 0;
+  border: none;
+  border-top: 1px solid $grey * 2;
+}
+
+p, iframe, fieldset, table, pre {
   margin-bottom: 26px;
 }
 
-@include mobile {
-  img { width: 100%; }
+.contents img {
+  width: 640px;
+  @include mobile {
+    width: 100%;
+  }
 }
 
 body, html {
