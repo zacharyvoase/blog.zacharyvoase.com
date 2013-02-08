@@ -9,7 +9,7 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
   color: white;
   text-decoration: none;
 
-  a { color: $teal * 3; }
+  a, a:visited, a:active { color: $teal * 3; }
 }
 
 .titling {
@@ -18,6 +18,10 @@ $monospace-block: "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Cour
   letter-spacing: 1px;
   text-transform: uppercase;
   text-align: center;
+}
+
+.summary {
+  font-style: italic;
 }
 
 #header {
@@ -180,5 +184,7 @@ pre {
 
 blockquote { color: $grey / 2; }
 dl dt { font-weight: bold; }
-ins { @include dark-bg; }
+.article .contents {
+  ins, del { @include dark-bg; }
+}
 sup { vertical-align: super; }

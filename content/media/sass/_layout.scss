@@ -38,6 +38,11 @@ p, iframe, fieldset, table, pre {
   margin-bottom: 26px;
 }
 
+p.summary {
+  padding-bottom: 26px;
+  border-bottom: 3px double $grey * 2;
+}
+
 .contents img {
   width: 640px;
   @include mobile {
@@ -201,7 +206,7 @@ p.center { text-align: center; }
 h1 { margin: 8px 0; }
 
 div.content.page h1, p.date {
-  border-bottom: 1px solid $grey * 2;
+  border-bottom: 3px double $grey * 2;
   padding-bottom: 16px;
   margin-bottom: 26px;
 }
@@ -222,6 +227,8 @@ blockquote {
   padding: 10px 20px;
   min-width: 640px - (20px * 2);
 
+  @include mobile { min-width: 0; }
+
   & :last-child { margin-bottom: 0 !important; }
 }
 
@@ -240,6 +247,7 @@ ins, del {
   display: block;
   padding: 10px;
   width: 640px - (10px * 2);
+  @include mobile { width: auto; }
 }
 
 p, ins, del, pre, h1, h2, h3, h4, h5, h6 { clear: both; }
