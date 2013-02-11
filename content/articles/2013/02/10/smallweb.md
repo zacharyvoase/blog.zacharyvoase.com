@@ -86,3 +86,7 @@ trace, fixing the JS in that same browser and persisting your changes
 back to the server.
 
 I dream of the days when the Web truly does resemble SmallTalk.
+
+* * * * *
+
+Voice your disagreement on [Hacker News](https://news.ycombinator.com/item?id=5198425).
