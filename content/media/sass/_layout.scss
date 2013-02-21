@@ -116,6 +116,10 @@ body, html {
     height: 100px - (20px * 2);
     padding: 20px;
     width: 640px - (20px * 2);
+
+    p {
+      margin-bottom: 0;
+    }
   }
 }
 

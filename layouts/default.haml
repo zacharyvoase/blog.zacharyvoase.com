@@ -2,7 +2,6 @@
 %html{html_attrs("en"), xmlns}
   %head
     %meta{'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8"}
-    %meta{:name => "description", :content => "The Blog of Zachary Voase, brought to you in glorious HyperText."}
     %meta{:name => "viewport", :content => "width=device-width"}
 
     %meta{:property => "og:image:url", :content => "http://gravatar.com/avatar/fcd3a40babe606ef30cb342a6a74c54c.png"}
@@ -11,6 +10,7 @@
     %meta{:property => "dc:rights",  :content => "Public Domain"}
 
     - if item[:kind] == "index"
+      %meta{:name => "description", :content => "The Blog of Zachary Voase, brought to you in glorious HyperText."}
       %link{:rel => "alternate", :type => "application/rss+xml", :title => "Zack’s Blog", :href => "/rss.rdf"}
       %link{:rel => "alternate", :type => "application/rdf+xml", :title => "Zack’s Blog", :href => "/rss.rdf"}
 
@@ -79,6 +79,10 @@
 
     %div#footer-container
       %div#footer
+        - if item[:kind] == "article"
+          %p
+            Words by
+            %a{:href => "http://twitter.com/zacharyvoase"} @zacharyvoase
         %p
           All content on this site is released into the
           <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain</a>.
