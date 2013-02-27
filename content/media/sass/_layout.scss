@@ -44,10 +44,11 @@ p.summary {
 }
 
 .contents img {
-  width: 640px;
-  @include mobile {
-    width: 100%;
+  img {
+    width: 640px;
+    @include mobile { width: 100%; }
   }
+  .center img { width: inherit; }
 }
 
 body, html {
