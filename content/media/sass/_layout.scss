@@ -43,7 +43,7 @@ p.summary {
   border-bottom: 3px double $grey * 2;
 }
 
-.contents img {
+.contents {
   img {
     width: 640px;
     @include mobile { width: 100%; }
