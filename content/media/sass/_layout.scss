@@ -51,6 +51,10 @@ p.summary {
   .center img { width: inherit; }
 }
 
+p.share-buttons {
+  iframe { margin-bottom: 0; }
+}
+
 body, html {
   background-color: $teal;
 }
