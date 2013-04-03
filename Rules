@@ -38,6 +38,7 @@ compile '*' do
     filter :rubypants
     filter :fix_entities
     filter :colorize_syntax, :default_colorizer => :pygmentsrb, :syntax => :xhtml
+    snapshot :body
     layout '/default/'
   when 'erb'
     filter :erb

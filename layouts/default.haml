@@ -30,6 +30,9 @@
       %link{:rel =>      "rdf:type",      :href => "rss:item"}
       %meta{:property => "dc:date",    :content => @item[:created_at].to_s, :datatype => "xs:date"}
       %meta{:property => "rss:title",  :content => title_of(@item)}
+      %meta{:property => "twitter:url", :content => url_for(@item)}
+      %meta{:property => "twitter:title", :content => title_of(@item)}
+      %meta{:property => "twitter:description", :content => description_of(@item)}
       %link{:rel =>      "rss:link",   :content => rel_url_for(@item)}
 
     %link{:rel => "stylesheet", :href => "/media/css/style.css", :media => "screen, projection"}

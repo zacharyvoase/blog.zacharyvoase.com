@@ -1,4 +1,5 @@
 require 'erb'
+require 'nokogiri'
 
 include Nanoc3::Helpers::Blogging
 include Nanoc3::Helpers::Rendering
@@ -11,6 +12,16 @@ def title_of(item)
   return $1 if content =~ /<h1[^>]*>(.*)<\/h1>/i
 
   return item.identifier.split("/").last
+end
+
+def description_of(item)
+  content = item.compiled_content(:snapshot => :body)
+  html = Nokogiri::HTML(content)
+  if summary = html.css('p.summary')
+    return summary.text
+  else
+    return html.css("p").first.text
+  end
 end
 
 def rel_url_for(item)
