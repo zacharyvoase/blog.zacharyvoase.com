@@ -17,7 +17,7 @@ end
 def description_of(item)
   content = item.compiled_content(:snapshot => :body)
   html = Nokogiri::HTML(content)
-  if summary = html.css('p.summary')
+  unless (summary = html.css('p.summary')).empty?
     return summary.text
   else
     return html.css("p").first.text

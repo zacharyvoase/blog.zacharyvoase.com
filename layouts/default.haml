@@ -8,6 +8,9 @@
     %meta{:property => "og:image:secure_url", :content => "https://secure.gravatar.com/avatar/fcd3a40babe606ef30cb342a6a74c54c.png"}
     %meta{:property => "dc:creator", :content => "Zachary Voase"}
     %meta{:property => "dc:rights",  :content => "Public Domain"}
+    %meta{:property => "twitter:card", :content => "summary"}
+    %meta{:property => "twitter:site", :content => "@zackwurst"}
+    %meta{:property => "twitter:domain", :content => "zacharyvoase.com"}
 
     - if item[:kind] == "index"
       %meta{:name => "description", :content => "The Blog of Zachary Voase, brought to you in glorious HyperText."}
@@ -19,8 +22,12 @@
       %link{     :rel => "rdf:type",      :href => "rss:channel"}
       %meta{:property => "dc:date",    :content => sorted_articles.last[:created_at].to_s}
       %meta{:property => "rss:title",  :content => "Zack’s Blog"}
-      %link{     :rel => "rss:link",      :href => "http://blog.zacharyvoase.com/"}
-      %link{     :rel => "rss:items",     :href => "http://blog.zacharyvoase.com/#articles"}
+      %link{     :rel => "rss:link",      :href => "http://zacharyvoase.com/"}
+      %link{     :rel => "rss:items",     :href => "http://zacharyvoase.com/#articles"}
+
+      %meta{:property => "twitter:title",  :content => "Zack’s Blog"}
+      %meta{:property => "twitter:url",  :content => "http://zacharyvoase.com/"}
+      %meta{:property => "twitter:description",  :content => "The Blog of Zachary Voase, brought to you in glorious HyperText."}
 
       %meta{:property => "sy:updatePeriod",    :content => "daily"}
       %meta{:property => "sy:updateFrequency", :content => "1"}
@@ -28,8 +35,10 @@
 
     - elsif item[:kind] == "article"
       %link{:rel =>      "rdf:type",      :href => "rss:item"}
+      %meta{:name => "description", :content => description_of(@item)}
       %meta{:property => "dc:date",    :content => @item[:created_at].to_s, :datatype => "xs:date"}
       %meta{:property => "rss:title",  :content => title_of(@item)}
+      %meta{:property => "twitter:creator", :content => "@zackwurst"}
       %meta{:property => "twitter:url", :content => url_for(@item)}
       %meta{:property => "twitter:title", :content => title_of(@item)}
       %meta{:property => "twitter:description", :content => description_of(@item)}
