@@ -5,8 +5,8 @@ title: "QR Codify: The Most Useful Snippet I've Ever Written"
 ---
 
 **tl;dr**: I wrote a Mac OS X Service which allows you to display the
-currently-selected text as an on-screen QR code. Download it
-[here](/qr-codify.workflow.tar.bz2).
+currently-selected text as an on-screen QR code. Buy it
+[here](http://pul.ly/b/59512) for only £1.07.
 {: .summary}
 
 It really annoys me when there's some text on my computer that I need to be
@@ -38,4 +38,4 @@ something like this:
 When I'm done with it, I hit the space bar and it goes away.
 
 If this is something that'd be useful to you, you can grab it
-[here](/qr-codify.workflow.tar.bz2).
+[here](http://pul.ly/b/59512).
